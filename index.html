@@ -717,6 +717,95 @@
         </li>
         </ul>
       </div>
+      
+        <div style="height:14px"></div>
+        <div class="subpanel">
+          <div class="panel-head compact" style="margin-bottom: 10px;">
+            <div>
+              <p class="eyebrow">Recursive search</p>
+              <h3>Lower-timeframe search boundary</h3>
+              <p class="muted">The lower-TF search is capped at 3 generations or 15 variants, then switches data source if candle-only edge keeps failing.</p>
+            </div>
+            <div class="badge">no deployable lower-timeframe edge found yet</div>
+          </div>
+          <div class="summary-grid">
+            <div class="summary-box">
+              <span>Best lower-TF candidate</span>
+              <strong>none</strong>
+              <p>The tested 6m/30m deployable candidates did not beat the 15m baseline, did not meet the minimum trade threshold, and failed stability checks.</p>
+            </div>
+            <div class="summary-box">
+              <span>Stop condition</span>
+              <strong>OHLCV-only lower-TF variants remain weak after fees, slippage, fill assumptions, and walk-forward checks.</strong>
+              <p>Do not keep mutating weak OHLCV-only 1m-6m strategies.</p>
+            </div>
+            <div class="summary-box">
+              <span>Next branch</span>
+              <strong>microstructure/trade-flow research with real aggTrade, quote, or order-book data.</strong>
+              <p>Build a sampled aggTrade imbalance probe across multiple months first; only promote to full test if the signal survives costs on out-of-sample months.</p>
+            </div>
+          </div>
+          <div style="height:14px"></div>
+          <div class="grid-2">
+            <div class="table-wrap"><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Round</th>
+      <th>Name</th>
+      <th>Objective</th>
+      <th>Decision</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Broad evidence scan</td>
+      <td>Identify simple, deployable lower-timeframe BTC futures families without forcing a candle-only result.</td>
+      <td>Keep lower-TF OHLCV families bounded; switch to microstructure when costs erase the edge.</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Sub-variant generation</td>
+      <td>Generate up to 15 variants across the strongest families without parameter-mining indefinitely.</td>
+      <td>Stop after 3 generations or 15 total variants; reject families that only work in-sample or under unrealistic fills.</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Full realistic stress test</td>
+      <td>Full-test only the strongest deployable candidates using existing realistic execution assumptions.</td>
+      <td>No lower-timeframe candidate passed. Do not continue mutating OHLCV-only 1m-6m candles without new data.</td>
+    </tr>
+  </tbody>
+</table></div>
+            <div class="table-wrap"><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Dataset</th>
+      <th>Size</th>
+      <th>Use</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Binance USD-M BTCUSDT monthly aggTrades</td>
+      <td>413.06 MB</td>
+      <td>Trade-flow imbalance proxy; not full order-book pressure.</td>
+    </tr>
+    <tr>
+      <td>Binance USD-M BTCUSDT monthly trades</td>
+      <td>650.88 MB</td>
+      <td>More granular trade-flow testing; heavy for full-year local sweeps.</td>
+    </tr>
+    <tr>
+      <td>Historical top-of-book / depth snapshots</td>
+      <td>n/a</td>
+      <td>Required for honest order-book imbalance, microprice, queue pressure, and maker fill modeling.</td>
+    </tr>
+  </tbody>
+</table></div>
+          </div>
+        </div>
+        
       <div style="height:14px"></div>
       <div class="grid-2">
         
