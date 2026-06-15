@@ -1301,6 +1301,144 @@
           </div>
         </div>
         
+      
+        <div style="height:14px"></div>
+        <div class="subpanel">
+          <div class="panel-head compact" style="margin-bottom: 10px;">
+            <div>
+              <p class="eyebrow">Strategy tournament</p>
+              <h3>Deployable BTC family tournament</h3>
+              <p class="muted">The search widened beyond lower timeframes and ranked practical families by robustness, trade count, slippage sensitivity, and out-of-sample stability.</p>
+            </div>
+            <div class="badge">weak</div>
+          </div>
+          <div class="summary-grid">
+            <div class="summary-box">
+              <span>Best candidate</span>
+              <strong>BTC 15m basis-filtered mean reversion</strong>
+              <p>Candidates are only promoted if they survive realistic execution, hold up out of sample, and improve on trade count or robustness versus the 15m baseline.</p>
+            </div>
+            <div class="summary-box">
+              <span>Verdict</span>
+              <strong>15m baseline remains benchmark until a tournament candidate beats it honestly</strong>
+              <p>The 15m baseline stays in place unless a tournament branch beats it honestly.</p>
+            </div>
+          </div>
+          <div style="height:14px"></div>
+          <div class="table-wrap"><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Variant</th>
+      <th>TF</th>
+      <th>Net</th>
+      <th>DD</th>
+      <th>PF</th>
+      <th>Trades/mo</th>
+      <th>Verdict</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>BTC 15m mean reversion</td>
+      <td>15m</td>
+      <td>$20.62</td>
+      <td>$12.33</td>
+      <td>3.34</td>
+      <td>0.75</td>
+      <td>paper trade candidate</td>
+    </tr>
+    <tr>
+      <td>BTC 15m basis-filtered mean reversion</td>
+      <td>15m</td>
+      <td>$18.71</td>
+      <td>$3.43</td>
+      <td>inf</td>
+      <td>0.25</td>
+      <td>weak</td>
+    </tr>
+    <tr>
+      <td>BTC 30m Donchian breakout + ETH RS</td>
+      <td>30m</td>
+      <td>$12.91</td>
+      <td>$7.49</td>
+      <td>3.10</td>
+      <td>0.33</td>
+      <td>weak</td>
+    </tr>
+    <tr>
+      <td>BTC 30m trend pullback regime filter</td>
+      <td>30m</td>
+      <td>$-4.99</td>
+      <td>$14.07</td>
+      <td>0.65</td>
+      <td>0.42</td>
+      <td>reject</td>
+    </tr>
+  </tbody>
+</table></div>
+          <div style="height:14px"></div>
+          <div class="subpanel">
+            <h3>Family map</h3>
+            <ul class="clean-list">
+            <li>
+              <strong>15m/30m trend pullback continuation with volatility regime filter</strong>
+              <p>BTC momentum is documented, and pullback entries avoid chasing raw breakouts.</p>
+              <p class="muted">Data status: available</p>
+              <p class="muted"></p>
+            </li>
+            
+            <li>
+              <strong>30m/1h volatility breakout / Donchian breakout</strong>
+              <p>Breakout logic is deployable and often performs differently from mean reversion.</p>
+              <p class="muted">Data status: available</p>
+              <p class="muted"></p>
+            </li>
+            
+            <li>
+              <strong>15m/30m mean reversion with stronger regime filter</strong>
+              <p>The current keeper is mean reversion, so improving regime selection is the most direct robustness test.</p>
+              <p class="muted">Data status: available</p>
+              <p class="muted"></p>
+            </li>
+            
+            <li>
+              <strong>Funding-rate or funding-fade strategy</strong>
+              <p>Funding is structural, but prior branches already showed weak standalone directional edge.</p>
+              <p class="muted">Data status: available but previously weak</p>
+              <p class="muted">Not promoted into the strongest three because prior deployable funding fade stayed weak and slower than the 15m baseline.</p>
+            </li>
+            
+            <li>
+              <strong>Open-interest + price confirmation</strong>
+              <p>Open interest can be useful, but Binance official historical open interest stats only expose the latest 1 month.</p>
+              <p class="muted">Data status: not practical for full-year test</p>
+              <p class="muted">Rejected on data availability grounds for this tournament.</p>
+            </li>
+            
+            <li>
+              <strong>Spot/perp premium or basis signal</strong>
+              <p>Basis is public and directly tied to perp pricing pressure.</p>
+              <p class="muted">Data status: available</p>
+              <p class="muted"></p>
+            </li>
+            
+            <li>
+              <strong>Liquidation-event reversal or continuation</strong>
+              <p>Binance exposes liquidation streams live, but no easy continuous historical public dataset is in the workspace.</p>
+              <p class="muted">Data status: not practical for full-year test</p>
+              <p class="muted">Rejected on data continuity grounds for this tournament.</p>
+            </li>
+            
+            <li>
+              <strong>BTC/ETH relative-strength filter</strong>
+              <p>Cross-sectional momentum is documented in crypto markets, and ETH is liquid enough to act as a practical confirmation filter.</p>
+              <p class="muted">Data status: available</p>
+              <p class="muted"></p>
+            </li>
+            </ul>
+          </div>
+        </div>
+        
       <div style="height:14px"></div>
       <div class="grid-2">
         
@@ -1474,13 +1612,10 @@
     <tr style="text-align: right;">
       <th>Variant</th>
       <th>TF</th>
-      <th>Net profit</th>
-      <th>Drawdown</th>
-      <th>Win rate</th>
-      <th>Profit factor</th>
-      <th>Expectancy</th>
+      <th>Net</th>
+      <th>DD</th>
+      <th>PF</th>
       <th>Trades/mo</th>
-      <th>Trades</th>
       <th>Verdict</th>
     </tr>
   </thead>
@@ -1490,48 +1625,36 @@
       <td>15m</td>
       <td>$20.62</td>
       <td>$12.33</td>
-      <td>55.56%</td>
       <td>3.34</td>
-      <td>$2.29</td>
       <td>0.75</td>
-      <td>9</td>
-      <td>paper trade ready</td>
+      <td>paper trade candidate</td>
     </tr>
     <tr>
-      <td>BTC 6m trend pullback</td>
-      <td>6m</td>
-      <td>$-1.02</td>
-      <td>$8.16</td>
-      <td>33.33%</td>
-      <td>0.94</td>
-      <td>$-0.11</td>
-      <td>0.75</td>
-      <td>9</td>
+      <td>BTC 15m basis-filtered mean reversion</td>
+      <td>15m</td>
+      <td>$18.71</td>
+      <td>$3.43</td>
+      <td>inf</td>
+      <td>0.25</td>
       <td>weak</td>
     </tr>
     <tr>
-      <td>BTC 6m loose mean reversion</td>
-      <td>6m</td>
-      <td>$-16.76</td>
-      <td>$28.30</td>
-      <td>25.00%</td>
-      <td>0.10</td>
-      <td>$-4.19</td>
-      <td>0.33</td>
-      <td>4</td>
-      <td>reject</td>
-    </tr>
-    <tr>
-      <td>BTC 30m funding fade</td>
+      <td>BTC 30m Donchian breakout + ETH RS</td>
       <td>30m</td>
-      <td>$0.71</td>
-      <td>$5.66</td>
-      <td>33.33%</td>
-      <td>1.19</td>
-      <td>$0.12</td>
-      <td>0.50</td>
-      <td>6</td>
+      <td>$12.91</td>
+      <td>$7.49</td>
+      <td>3.10</td>
+      <td>0.33</td>
       <td>weak</td>
+    </tr>
+    <tr>
+      <td>BTC 30m trend pullback regime filter</td>
+      <td>30m</td>
+      <td>$-4.99</td>
+      <td>$14.07</td>
+      <td>0.65</td>
+      <td>0.42</td>
+      <td>reject</td>
     </tr>
   </tbody>
 </table></div>
