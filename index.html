@@ -121,9 +121,9 @@
         </article>
         
         <article class="quick-card">
-          <span>Best higher-trade probe</span>
-          <strong>6.74 / month</strong>
-          <p>Multi-asset 15m breakout continuation still failed realism checks.</p>
+          <span>Daily-opportunity v3</span>
+          <strong>reject</strong>
+          <p>No daily-opportunity strategy survived realistic execution.</p>
         </article>
         </div>
         </div>
@@ -191,9 +191,14 @@
           <p>The 5-minute binary-market idea did not transfer to BTC futures after costs.</p>
         </div>
         <div class="summary-box">
+          <span>Daily-opportunity v3</span>
+          <strong>reject</strong>
+          <p>No daily-opportunity strategy survived realistic execution.</p>
+        </div>
+        <div class="summary-box">
           <span>Multi-asset intraday v2</span>
           <strong>reject</strong>
-          <p>The higher-trade basket branch finally reached 6.74 trades/month, but still lost after realistic costs.</p>
+          <p>The higher-trade basket branch improved activity, but still failed after realistic costs.</p>
         </div>
         <div class="summary-box">
           <span>Old lower-TF search</span>
@@ -308,6 +313,202 @@
           </div>
         </div>
       </div>
+    </section>
+    
+      </div>
+    </details>
+    
+    <details class="fold fold-warn" open>
+      <summary>
+        <div>
+          <span class="fold-kicker">Daily Opportunity Search v3</span>
+          <strong>Event-driven branch for realistic daily setups</strong>
+        </div>
+        <span class="fold-icon">+</span>
+      </summary>
+      <div class="fold-body">
+        
+    <section class="panel">
+      <div class="panel-head compact">
+        <div>
+          <p class="eyebrow">Daily Opportunity Search v3</p>
+          <h2>Event-driven daily-opportunity branch</h2>
+          <p class="muted">Find realistic daily trade opportunities with positive expectancy after fees, slippage, spread proxy, missed fills, and funding.</p>
+        </div>
+        <div class="badge">reject</div>
+      </div>
+      <div class="summary-grid">
+        <div class="summary-box">
+          <span>Objective</span>
+          <strong>1+ trade/day target</strong>
+          <p>20+ trades/month, PF 1.2+ after realistic execution.</p>
+        </div>
+        <div class="summary-box">
+          <span>Tested families</span>
+          <strong>5</strong>
+          <p>Volatility compression breakout, Liquidity sweep reversal proxy, Session-based intraday behavior, Funding or premium extreme fade, VWAP deviation mean reversion</p>
+        </div>
+        <div class="summary-box">
+          <span>Best candidate</span>
+          <strong>BTC 1m volatility compression breakout</strong>
+          <p>Volatility compression breakout</p>
+        </div>
+        <div class="summary-box">
+          <span>Verdict</span>
+          <strong>No daily-opportunity strategy survived realistic execution.</strong>
+          <p>Neither frequency nor expectancy survived realistic execution.</p>
+        </div>
+      </div>
+      <div style="height:14px"></div>
+      <div class="summary-grid">
+        <div class="summary-box">
+          <span>Net / PF</span>
+          <strong>$0.00</strong>
+          <p>PF 0.00; win rate 0.00%.</p>
+        </div>
+        <div class="summary-box">
+          <span>Drawdown / trades</span>
+          <strong>$0.00</strong>
+          <p>0 trades; 0.00/month.</p>
+        </div>
+        <div class="summary-box">
+          <span>Trades/day</span>
+          <strong>0.00</strong>
+          <p>Active-day rate 0.00.</p>
+        </div>
+        <div class="summary-box">
+          <span>Train / test</span>
+          <strong>$0.00 / $0.00</strong>
+          <p>Slip stress $0.00; fee stress $0.00.</p>
+        </div>
+      </div>
+      <div style="height:14px"></div>
+      <div class="subpanel table-wrap"><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>candidate</th>
+      <th>family</th>
+      <th>scope</th>
+      <th>net_pnl</th>
+      <th>gross_pnl</th>
+      <th>fees</th>
+      <th>slippage_cost_est</th>
+      <th>profit_factor</th>
+      <th>win_rate_pct</th>
+      <th>max_drawdown</th>
+      <th>trades</th>
+      <th>trades_day</th>
+      <th>trades_month</th>
+      <th>train_net</th>
+      <th>test_net</th>
+      <th>slippage_stress_net</th>
+      <th>fee_stress_net</th>
+      <th>verdict</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>BTC 1m volatility compression breakout</td>
+      <td>Volatility compression breakout</td>
+      <td>btc_only</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>reject</td>
+    </tr>
+    <tr>
+      <td>BTC 1m liquidity sweep reversal</td>
+      <td>Liquidity sweep reversal proxy</td>
+      <td>btc_only</td>
+      <td>-3.22</td>
+      <td>-0.92</td>
+      <td>2.30</td>
+      <td>3.08</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>3.22</td>
+      <td>3</td>
+      <td>0.01</td>
+      <td>0.25</td>
+      <td>-3.22</td>
+      <td>-11.76</td>
+      <td>-3.70</td>
+      <td>-3.63</td>
+      <td>reject</td>
+    </tr>
+    <tr>
+      <td>BTC 1m session failed breakout</td>
+      <td>Session-based intraday behavior</td>
+      <td>btc_only</td>
+      <td>-16.85</td>
+      <td>-13.98</td>
+      <td>2.86</td>
+      <td>4.05</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>16.85</td>
+      <td>3</td>
+      <td>0.01</td>
+      <td>0.25</td>
+      <td>-16.85</td>
+      <td>-6.16</td>
+      <td>-17.16</td>
+      <td>-18.27</td>
+      <td>reject</td>
+    </tr>
+    <tr>
+      <td>Multi-asset 15m funding extreme fade</td>
+      <td>Funding or premium extreme fade</td>
+      <td>multi_asset_15m</td>
+      <td>-19.68</td>
+      <td>-17.29</td>
+      <td>2.40</td>
+      <td>10.83</td>
+      <td>0.23</td>
+      <td>42.11</td>
+      <td>20.84</td>
+      <td>19</td>
+      <td>0.05</td>
+      <td>1.59</td>
+      <td>-10.87</td>
+      <td>-8.21</td>
+      <td>-20.30</td>
+      <td>-20.87</td>
+      <td>reject</td>
+    </tr>
+    <tr>
+      <td>BTC 1m VWAP deviation mean reversion</td>
+      <td>VWAP deviation mean reversion</td>
+      <td>btc_only</td>
+      <td>-18.57</td>
+      <td>-11.04</td>
+      <td>7.53</td>
+      <td>10.33</td>
+      <td>0.04</td>
+      <td>25.00</td>
+      <td>19.16</td>
+      <td>8</td>
+      <td>0.02</td>
+      <td>0.67</td>
+      <td>-18.57</td>
+      <td>-11.19</td>
+      <td>-15.33</td>
+      <td>-20.27</td>
+      <td>reject</td>
+    </tr>
+  </tbody>
+</table></div>
     </section>
     
       </div>
