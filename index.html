@@ -258,6 +258,12 @@
       grid-template-columns: 1fr 1fr;
       gap: 14px;
     }
+    .hft-card {
+      height: 100%;
+    }
+    .hft-mini {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
     .charts {
       display: grid;
       grid-template-columns: 1fr;
@@ -609,6 +615,247 @@
     
       </div>
     </section>
+
+    
+    <section class="panel">
+      <div class="panel-head compact">
+        <div>
+          <p class="eyebrow">HFT research</p>
+          <h2>BTC 3m variants</h2>
+          <p class="muted">Three short-horizon families tested on the same 12-month BTC futures sample with the same execution model.</p>
+        </div>
+      </div>
+      <div class="summary-grid">
+        <div class="summary-box">
+          <span>Recommendation</span>
+          <strong>BTC 3m EMA trend</strong>
+          <p>Best variant by net profit: BTC 3m EMA trend. This is the short-horizon 3m research branch, separate from the 15m lead.</p>
+        </div>
+        <div class="summary-box">
+          <span>Data window</span>
+          <strong>2025-06-01 to 2026-06-01</strong>
+          <p>Binance USD-M futures public 3m candles</p>
+        </div>
+        <div class="summary-box">
+          <span>Variants tested</span>
+          <strong>3</strong>
+          <p>3m bullish mean reversion, 3m symmetric mean reversion, and 3m EMA trend.</p>
+        </div>
+        <div class="summary-box">
+          <span>Best tie-break</span>
+          <strong>Profit factor + drawdown</strong>
+          <p>Net profit was the primary selector; drawdown and profit factor broke ties.</p>
+        </div>
+        <div class="summary-box">
+          <span>Verdict</span>
+          <strong>no viable HFT edge found</strong>
+          <p>The current 3m sample does not yet show a clear profitable HFT edge.</p>
+        </div>
+      </div>
+      <div style="height:14px"></div>
+      <div class="grid-2">
+        
+            <section class="subpanel hft-card">
+              <div class="panel-head compact">
+                <div>
+                  <p class="eyebrow">3m HFT variant</p>
+                  <h3>BTC 3m bullish mean reversion</h3>
+                  <p class="muted">Contrarian 3m long-only setup inspired by documented market-making/passivbot-style reversion logic.</p>
+                </div>
+                <div class="badge">3m passivbot-style long mean reversion</div>
+              </div>
+              <div class="mini-grid hft-mini">
+                
+    <div class="stat-card">
+      <div class="stat-label">Net profit</div>
+      <div class="stat-value">$-9.03</div>
+      
+    </div>
+    
+                
+    <div class="stat-card">
+      <div class="stat-label">Max drawdown</div>
+      <div class="stat-value">$9.39</div>
+      
+    </div>
+    
+                
+    <div class="stat-card">
+      <div class="stat-label">Win rate</div>
+      <div class="stat-value">16.67%</div>
+      
+    </div>
+    
+                
+    <div class="stat-card">
+      <div class="stat-label">Trades</div>
+      <div class="stat-value">6</div>
+      
+    </div>
+    
+              </div>
+              <div class="parameter-list">
+                <div class="param-row"><span>Profit factor</span><strong>0.02</strong></div>
+                <div class="param-row"><span>Expectancy</span><strong>$-1.51</strong></div>
+                <div class="param-row"><span>Avg duration</span><strong>0.64 h</strong></div>
+                <div class="param-row"><span>Params</span><strong>long_rsi=28, adx_max=20, band_cap=1.0, exit_long_rsi=48</strong></div>
+                <div class="param-row"><span>Sources</span><strong><a href="https://github.com/enarjord/passivbot" target="_blank" rel="noreferrer">source</a> <a href="https://github.com/enarjord/passivbot/wiki/walkthrough" target="_blank" rel="noreferrer">source</a></strong></div>
+              </div>
+            </section>
+            
+        
+            <section class="subpanel hft-card">
+              <div class="panel-head compact">
+                <div>
+                  <p class="eyebrow">3m HFT variant</p>
+                  <h3>BTC 3m symmetric mean reversion</h3>
+                  <p class="muted">Standard 3m Bollinger+RSI mean reversion with both sides enabled and a documented crypto intraday reversal backdrop.</p>
+                </div>
+                <div class="badge">3m Bollinger / RSI reversion</div>
+              </div>
+              <div class="mini-grid hft-mini">
+                
+    <div class="stat-card">
+      <div class="stat-label">Net profit</div>
+      <div class="stat-value">$-7.24</div>
+      
+    </div>
+    
+                
+    <div class="stat-card">
+      <div class="stat-label">Max drawdown</div>
+      <div class="stat-value">$7.24</div>
+      
+    </div>
+    
+                
+    <div class="stat-card">
+      <div class="stat-label">Win rate</div>
+      <div class="stat-value">0.00%</div>
+      
+    </div>
+    
+                
+    <div class="stat-card">
+      <div class="stat-label">Trades</div>
+      <div class="stat-value">3</div>
+      
+    </div>
+    
+              </div>
+              <div class="parameter-list">
+                <div class="param-row"><span>Profit factor</span><strong>0.00</strong></div>
+                <div class="param-row"><span>Expectancy</span><strong>$-2.41</strong></div>
+                <div class="param-row"><span>Avg duration</span><strong>0.40 h</strong></div>
+                <div class="param-row"><span>Params</span><strong>long_rsi=32, short_rsi=68, adx_max=28, band_cap=1.002</strong></div>
+                <div class="param-row"><span>Sources</span><strong><a href="https://papers.ssrn.com/sol3/Delivery.cfm/SSRN_ID4135239_code2537556.pdf?abstractid=4080253&amp;mirid=1" target="_blank" rel="noreferrer">source</a> <a href="https://github.com/jerome78b/bitget-trading-bot" target="_blank" rel="noreferrer">source</a></strong></div>
+              </div>
+            </section>
+            
+      </div>
+      <div style="height:14px"></div>
+      
+            <section class="subpanel hft-card">
+              <div class="panel-head compact">
+                <div>
+                  <p class="eyebrow">3m HFT variant</p>
+                  <h3>BTC 3m EMA trend</h3>
+                  <p class="muted">Walk-forward friendly intraday EMA trend family based on the recent BTC EMA optimization paper.</p>
+                </div>
+                <div class="badge">3m EMA crossover trend</div>
+              </div>
+              <div class="mini-grid hft-mini">
+                
+    <div class="stat-card">
+      <div class="stat-label">Net profit</div>
+      <div class="stat-value">$-3.25</div>
+      
+    </div>
+    
+                
+    <div class="stat-card">
+      <div class="stat-label">Max drawdown</div>
+      <div class="stat-value">$3.73</div>
+      
+    </div>
+    
+                
+    <div class="stat-card">
+      <div class="stat-label">Win rate</div>
+      <div class="stat-value">0.00%</div>
+      
+    </div>
+    
+                
+    <div class="stat-card">
+      <div class="stat-label">Trades</div>
+      <div class="stat-value">3</div>
+      
+    </div>
+    
+              </div>
+              <div class="parameter-list">
+                <div class="param-row"><span>Profit factor</span><strong>0.00</strong></div>
+                <div class="param-row"><span>Expectancy</span><strong>$-1.08</strong></div>
+                <div class="param-row"><span>Avg duration</span><strong>0.18 h</strong></div>
+                <div class="param-row"><span>Params</span><strong>rsi_low=48, rsi_high=68, rsi_short_low=32, rsi_short_high=52</strong></div>
+                <div class="param-row"><span>Sources</span><strong><a href="https://arxiv.org/html/2602.10785" target="_blank" rel="noreferrer">source</a> <a href="https://www.passivbot.com/" target="_blank" rel="noreferrer">source</a></strong></div>
+              </div>
+            </section>
+            
+      <div style="height:14px"></div>
+      <div class="subpanel">
+        <div class="panel-head compact" style="margin-bottom: 10px;">
+          <div>
+            <p class="eyebrow">HFT comparison</p>
+            <h3>All variants in one table</h3>
+          </div>
+        </div>
+        <div class="table-wrap"><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Variant</th>
+      <th>TF</th>
+      <th>Net profit</th>
+      <th>Drawdown</th>
+      <th>Win rate</th>
+      <th>Profit factor</th>
+      <th>Trades</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>BTC 3m bullish mean reversion</td>
+      <td>3m</td>
+      <td>$-9.03</td>
+      <td>$9.39</td>
+      <td>16.67%</td>
+      <td>0.02</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>BTC 3m symmetric mean reversion</td>
+      <td>3m</td>
+      <td>$-7.24</td>
+      <td>$7.24</td>
+      <td>0.00%</td>
+      <td>0.00</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>BTC 3m EMA trend</td>
+      <td>3m</td>
+      <td>$-3.25</td>
+      <td>$3.73</td>
+      <td>0.00%</td>
+      <td>0.00</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table></div>
+      </div>
+    </section>
+    
 
     <section class="panel">
       <div class="panel-head compact">
