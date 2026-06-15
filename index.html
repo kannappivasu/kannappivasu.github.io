@@ -625,19 +625,87 @@
       </div>
     </section>
 
-    
+    <section class="panel">
+      <div class="panel-head compact">
+        <div>
+          <p class="eyebrow">Documented strategies</p>
+          <h2>BTC futures families worth keeping</h2>
+          <p class="muted">The lead is the fully tested edge; the other rows are documented families and research candidates worth watching.</p>
+        </div>
+      </div>
+      <div class="subpanel">
+        <table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Strategy</th>
+      <th>Status</th>
+      <th>Window</th>
+      <th>Net profit</th>
+      <th>Drawdown</th>
+      <th>Win rate</th>
+      <th>Profit factor</th>
+      <th>Trades</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>BTC 15m mean reversion</td>
+      <td>lead</td>
+      <td>2025-06-01 to 2026-06-01</td>
+      <td>$20.62</td>
+      <td>$12.33</td>
+      <td>55.56%</td>
+      <td>3.34</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>BTC 15m trend pullback</td>
+      <td>research candidate</td>
+      <td>May 2026 search sample</td>
+      <td>$4.21</td>
+      <td>$0.28</td>
+      <td>66.67%</td>
+      <td>16.04</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>BTC funding carry</td>
+      <td>archived</td>
+      <td>2025-06-01 to 2026-06-01</td>
+      <td>$-32.74</td>
+      <td>$32.74</td>
+      <td>0.00%</td>
+      <td>0.00</td>
+      <td>67</td>
+    </tr>
+    <tr>
+      <td>BTC daily Turtle breakout</td>
+      <td>benchmark</td>
+      <td>55-day entry / 20-day exit</td>
+      <td>$0.00</td>
+      <td>$0.00</td>
+      <td>0.00%</td>
+      <td>0.00</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+      </div>
+      <div style="height:14px"></div>
+      <div class="grid-2">
+        
     <section class="panel strategy-card" style="--accent:var(--accent)">
       <div class="panel-head compact">
         <div>
           <p class="eyebrow">Primary strategy</p>
           <h2>BTC 15m mean reversion</h2>
-          <p class="muted">This is the current best BTC futures candidate. It is the one to keep and stress, not the one to forget about.</p>
+          <p class="muted">Current lead: 15m mean reversion with maker-first entries. Best net result in the current sample, but still execution-sensitive.</p>
         </div>
         <div class="badge">Lead</div>
       </div>
       <div class="mini-grid">
         <div class="subpanel" style="grid-column: 1 / -1; margin-bottom: 2px;">
-          <p class="muted" style="margin: 0;">This is the current best BTC futures candidate. It is the one to keep and stress, not the one to forget about.</p>
+          <p class="muted" style="margin: 0;">Current lead: 15m mean reversion with maker-first entries. Best net result in the current sample, but still execution-sensitive.</p>
         </div>
         
     <div class="stat-card">
@@ -711,8 +779,17 @@
       </div>
     </section>
     
-
-    
+        <div class="subpanel">
+          <h3>Research candidate</h3>
+          <p class="muted" style="margin-top:0;">Trend pullback is the documented momentum family we want to keep on watch. It is shown in the table above because it is a search sample, not a fully validated live edge yet.</p>
+          <div class="parameter-list">
+            <div class="param-row"><span>Family</span><strong>trend following / pullback</strong></div><div class="param-row"><span>Status</span><strong>research candidate</strong></div><div class="param-row"><span>Window</span><strong>May 2026 search sample</strong></div><div class="param-row"><span>Normalized model</span><strong>$200 normalized</strong></div><div class="param-row"><span>Raw sample</span><strong>$210.46 / $13.99</strong></div>
+          </div>
+        </div>
+      </div>
+      <div style="height:14px"></div>
+      <div class="grid-2">
+        
     <section class="panel strategy-card" style="--accent:var(--accent2)">
       <div class="panel-head compact">
         <div>
@@ -798,6 +875,19 @@
       </div>
     </section>
     
+        <div class="subpanel">
+          <h3>Documented sources</h3>
+          <div class="parameter-list">
+            <div class="param-row"><span><a href="https://centaur.reading.ac.uk/100181/3/21Sep2021Bitcoin%20Intraday%20Time-Series%20Momentum.R2.pdf" target="_blank" rel="noreferrer">Bitcoin intraday time-series momentum</a></span><strong>documented</strong></div><div class="param-row"><span><a href="https://fairmodel.econ.yale.edu/ec439/hurst.pdf" target="_blank" rel="noreferrer">A century of evidence on trend following</a></span><strong>documented</strong></div><div class="param-row"><span><a href="https://quantpedia.com/trend-following-and-mean-reversion-in-bitcoin/" target="_blank" rel="noreferrer">Trend-following and mean reversion in Bitcoin</a></span><strong>documented</strong></div><div class="param-row"><span><a href="https://www.investopedia.com/articles/trading/08/turtle-trading.asp" target="_blank" rel="noreferrer">Turtle trading rules overview</a></span><strong>documented</strong></div><div class="param-row"><span><a href="https://arxiv.org/abs/2212.06888" target="_blank" rel="noreferrer">Fundamentals of perpetual futures</a></span><strong>documented</strong></div><div class="param-row"><span><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5262988" target="_blank" rel="noreferrer">Arbitrage in perpetual contracts</a></span><strong>documented</strong></div>
+          </div>
+        </div>
+      </div>
+      <div style="height:14px"></div>
+      <div class="subpanel">
+        <h3>Research note</h3>
+        <p class="muted" style="margin:0;">The trend-pullback sample came from the May 2026 search run. It is more documented than the carry proxy, but it still needs full-year validation before we treat it as anything more than a candidate.</p>
+      </div>
+    </section>
 
     <section class="panel">
       <div class="panel-head compact">
@@ -1282,6 +1372,18 @@
           <strong>Realism upgrades</strong>
           <p>Backtest engine now models maker/taker fees, spread-aware slippage, limit fills, and partial fills.</p>
         </li>
+        
+        <li>
+          <span>2026-06-15</span>
+          <strong>Documented carry strategy added</strong>
+          <p>Added a BTC funding carry proxy using spot and perp data so the dashboard can compare a hedge-style documented edge.</p>
+        </li>
+        
+        <li>
+          <span>2026-06-15</span>
+          <strong>Trend pullback research candidate added</strong>
+          <p>Added a documented BTC momentum / pullback family from the May search sample to the dashboard comparison.</p>
+        </li>
         </ul>
     </section>
 
@@ -1318,7 +1420,7 @@
     
 
     <div class="footer">
-      Generated 2026-06-15 05:00 UTC. Public benchmark references were checked separately, but this page is intentionally focused on the useful strategy evidence only.
+      Generated 2026-06-15 06:48 UTC. Public benchmark references were checked separately, but this page is intentionally focused on the useful strategy evidence only.
     </div>
   </div>
 
