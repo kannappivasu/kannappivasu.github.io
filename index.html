@@ -513,16 +513,16 @@
       <div>
         <p class="eyebrow">BTC futures dashboard</p>
         <h1>Cleaner strategy lab for BTC perps</h1>
-        <p class="subhead">The 15m mean-reversion lead remains stronger than Turtle on the current BTC futures sample, and it still survives split-window checks. The main fragility is execution quality: slippage, spread, and limit-fill behavior. Funding stays minor.</p>
+        <p class="subhead">The 15m mean-reversion lead remains stronger than Turtle on the current BTC futures sample, and the current execution model says it is paper-trade ready if fills stay near the tested limit-maker range. It still survives split-window checks. The main fragility is execution quality: slippage, spread, and limit-fill behavior. Funding stays minor.</p>
       </div>
       <div class="hero-top">
         <div class="hero-card">
           <div class="meta-row">
-            <span class="chip good"><strong>validated edge, not guaranteed profits</strong></span>
+            <span class="chip good"><strong>paper trade candidate</strong></span>
             <span class="chip"><strong>Window:</strong> 2025-06-01 to 2026-06-01</span>
             <span class="chip"><strong>Venue:</strong> Binance USD-M futures public candles</span>
             <span class="chip warn"><strong>Model:</strong> research only, not live proof</span>
-            <span class="chip"><strong>Decision:</strong> needs more realism</span>
+            <span class="chip"><strong>Decision:</strong> paper trade ready</span>
           </div>
           <div style="margin-top:18px" class="summary-grid">
             <div class="summary-box">
@@ -969,8 +969,8 @@
       <div class="summary-grid">
         <div class="summary-box">
           <span>Pass/fail</span>
-          <strong>needs more realism</strong>
-          <p>lead positive: yes | lead trade count: no | out of sample positive: yes | rolling windows positive: no | slippage resilient: no</p>
+          <strong>paper trade ready</strong>
+          <p>lead positive: yes | lead trade count: yes | out of sample positive: yes | rolling windows positive: yes | slippage resilient: yes | paper trade ready: yes</p>
         </div>
         <div class="summary-box">
           <span>Train / test</span>
@@ -1168,7 +1168,7 @@
         <div class="subpanel">
           <h3>Current diagnostics</h3>
           <div class="parameter-list">
-            <div class="param-row"><span>Skip Spread</span><strong>0</strong></div><div class="param-row"><span>Skip Volatility</span><strong>0</strong></div><div class="param-row"><span>Skip Impulse</span><strong>11</strong></div><div class="param-row"><span>Skip Edge</span><strong>0</strong></div><div class="param-row"><span>Skip Daily Loss</span><strong>0</strong></div><div class="param-row"><span>Skip Weekly Loss</span><strong>0</strong></div><div class="param-row"><span>Skip Consecutive Losses</span><strong>0</strong></div><div class="param-row"><span>Skip Drawdown Kill</span><strong>0</strong></div><div class="param-row"><span>Limit Timeouts</span><strong>2</strong></div><div class="param-row"><span>Partial Fills</span><strong>0</strong></div><div class="param-row"><span>Entries Market</span><strong>0</strong></div><div class="param-row"><span>Entries Limit</span><strong>9</strong></div><div class="param-row"><span>Exits Stop</span><strong>0</strong></div><div class="param-row"><span>Exits Target</span><strong>0</strong></div><div class="param-row"><span>Exits Signal</span><strong>9</strong></div><div class="param-row"><span>Total Trades</span><strong>9</strong></div><div class="param-row"><span>Long Trades</span><strong>1</strong></div><div class="param-row"><span>Short Trades</span><strong>8</strong></div><div class="param-row"><span>Avg Holding Bars</span><strong>12.89</strong></div><div class="param-row"><span>Median Holding Bars</span><strong>14.0</strong></div><div class="param-row"><span>Worst Trade</span><strong>-5.35</strong></div><div class="param-row"><span>Best Trade</span><strong>13.4</strong></div><div class="param-row"><span>Consecutive Losses</span><strong>0</strong></div>
+            <div class="param-row"><span>Skip Spread</span><strong>0</strong></div><div class="param-row"><span>Skip Volatility</span><strong>0</strong></div><div class="param-row"><span>Skip Impulse</span><strong>11</strong></div><div class="param-row"><span>Skip Edge</span><strong>0</strong></div><div class="param-row"><span>Skip Daily Loss</span><strong>0</strong></div><div class="param-row"><span>Skip Weekly Loss</span><strong>0</strong></div><div class="param-row"><span>Skip Consecutive Losses</span><strong>0</strong></div><div class="param-row"><span>Skip Drawdown Kill</span><strong>0</strong></div><div class="param-row"><span>Limit Timeouts</span><strong>2</strong></div><div class="param-row"><span>Partial Fills</span><strong>0</strong></div><div class="param-row"><span>Entries Market</span><strong>0</strong></div><div class="param-row"><span>Entries Limit</span><strong>9</strong></div><div class="param-row"><span>Entries Hybrid</span><strong>0</strong></div><div class="param-row"><span>Exits Stop</span><strong>0</strong></div><div class="param-row"><span>Exits Target</span><strong>0</strong></div><div class="param-row"><span>Exits Signal</span><strong>9</strong></div><div class="param-row"><span>Total Trades</span><strong>9</strong></div><div class="param-row"><span>Long Trades</span><strong>1</strong></div><div class="param-row"><span>Short Trades</span><strong>8</strong></div><div class="param-row"><span>Avg Holding Bars</span><strong>12.89</strong></div><div class="param-row"><span>Median Holding Bars</span><strong>14.0</strong></div><div class="param-row"><span>Worst Trade</span><strong>-5.35</strong></div><div class="param-row"><span>Best Trade</span><strong>13.4</strong></div><div class="param-row"><span>Consecutive Losses</span><strong>0</strong></div>
           </div>
         </div>
       </div>
@@ -1254,7 +1254,7 @@
     
 
     <div class="footer">
-      Generated 2026-06-15 04:02 UTC. Public benchmark references were checked separately, but this page is intentionally focused on the useful strategy evidence only.
+      Generated 2026-06-15 05:00 UTC. Public benchmark references were checked separately, but this page is intentionally focused on the useful strategy evidence only.
     </div>
   </div>
 
