@@ -105,11 +105,11 @@
         <article class="quick-card">
           <span>Current keeper</span>
           <strong>15m mean reversion v1</strong>
-          <p>Still the only paper-trade candidate.</p>
+          <p>Still the only paper-trade candidate, but only as a benchmark-ready process.</p>
         </article>
         
         <article class="quick-card">
-          <span>Trade frequency</span>
+          <span>Lead frequency</span>
           <strong>0.00 / month</strong>
           <p>Too low for your target pace.</p>
         </article>
@@ -121,9 +121,9 @@
         </article>
         
         <article class="quick-card">
-          <span>Recent challengers</span>
-          <strong>Rejected</strong>
-          <p>Higher-trade and Reddit-inspired branches failed realism checks.</p>
+          <span>Best higher-trade probe</span>
+          <strong>6.74 / month</strong>
+          <p>Multi-asset 15m breakout continuation still failed realism checks.</p>
         </article>
         </div>
         </div>
@@ -160,12 +160,12 @@
         <div class="summary-box">
           <span>Signals pace</span>
           <strong>0.00 / month</strong>
-          <p>This is the main reason the strategy still feels unsatisfying.</p>
+          <p>This is the main reason the benchmark still fails your actual objective.</p>
         </div>
         <div class="summary-box">
           <span>Operational truth</span>
-          <strong>Useful, not enough</strong>
-          <p>The keeper is serviceable for paper trading, not a strong growth engine for a small account.</p>
+          <strong>Benchmark only</strong>
+          <p>The keeper is useful as a control strategy, not a convincing growth engine for a small account.</p>
         </div>
       </div>
     </section>
@@ -191,14 +191,14 @@
           <p>The 5-minute binary-market idea did not transfer to BTC futures after costs.</p>
         </div>
         <div class="summary-box">
-          <span>Lower-TF candles</span>
+          <span>Multi-asset intraday v2</span>
           <strong>reject</strong>
-          <p>1m to 6m OHLCV branches weakened or died after realistic execution modeling.</p>
+          <p>The higher-trade basket branch finally reached 6.74 trades/month, but still lost after realistic costs.</p>
         </div>
         <div class="summary-box">
-          <span>Sampled microstructure</span>
+          <span>Old lower-TF search</span>
           <strong>reject</strong>
-          <p>Top-of-book and sampled-day probes did not beat the 15m baseline honestly.</p>
+          <p>Lower-TF candles, taker-flow, and sampled microstructure all failed to beat the baseline honestly.</p>
         </div>
       </div>
     </section>
@@ -308,6 +308,115 @@
           </div>
         </div>
       </div>
+    </section>
+    
+      </div>
+    </details>
+    
+    <details class="fold fold-warn" open>
+      <summary>
+        <div>
+          <span class="fold-kicker">Multi-Asset v2</span>
+          <strong>The new higher-trade basket branch</strong>
+        </div>
+        <span class="fold-icon">+</span>
+      </summary>
+      <div class="fold-body">
+        
+    <section class="panel">
+      <div class="panel-head compact">
+        <div>
+          <p class="eyebrow">Multi-asset v2</p>
+          <h2>Higher-trade basket branch</h2>
+          <p class="muted">This branch retires BTC-only v1 as the main growth engine and tests simple multi-asset intraday families across liquid perps.</p>
+        </div>
+        <div class="badge">reject</div>
+      </div>
+      <div class="summary-grid">
+        <div class="summary-box">
+          <span>Universe</span>
+          <strong>6 assets</strong>
+          <p>BTCUSDT, ETHUSDT, SOLUSDT, BNBUSDT, XRPUSDT, DOGEUSDT</p>
+        </div>
+        <div class="summary-box">
+          <span>Best tested branch</span>
+          <strong>Multi-asset 15m breakout continuation</strong>
+          <p>multi-asset breakout</p>
+        </div>
+        <div class="summary-box">
+          <span>Portfolio result</span>
+          <strong>$0.00</strong>
+          <p>0.00 trades/mo; PF 0.00.</p>
+        </div>
+        <div class="summary-box">
+          <span>Out-of-sample</span>
+          <strong>$0.00</strong>
+          <p>portfolio net is negative after realistic costs; portfolio profit factor is below 1.20; portfolio still does not reach 5 trades/month; portfolio has fewer than 24 trades in sample; out-of-sample test is negative; 0.05% slippage stress destroys the portfolio; fewer than three assets are profitable; rolling 3-month checks are not stable enough</p>
+        </div>
+      </div>
+      <div style="height:14px"></div>
+      <div class="subpanel table-wrap"><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>variant</th>
+      <th>family</th>
+      <th>timeframe</th>
+      <th>net_profit</th>
+      <th>max_drawdown</th>
+      <th>profit_factor</th>
+      <th>win_rate_pct</th>
+      <th>expectancy_per_trade</th>
+      <th>trades</th>
+      <th>trades_per_month</th>
+      <th>test_net_profit</th>
+      <th>verdict</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Multi-asset 15m breakout continuation</td>
+      <td>multi-asset breakout</td>
+      <td>15m</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>reject</td>
+    </tr>
+    <tr>
+      <td>Multi-asset 15m trend pullback</td>
+      <td>multi-asset trend pullback</td>
+      <td>15m</td>
+      <td>-15.15</td>
+      <td>16.97</td>
+      <td>0.39</td>
+      <td>40.00</td>
+      <td>-0.76</td>
+      <td>20</td>
+      <td>1.71</td>
+      <td>-0.63</td>
+      <td>reject</td>
+    </tr>
+    <tr>
+      <td>Multi-asset 15m loose mean reversion</td>
+      <td>multi-asset mean reversion</td>
+      <td>15m</td>
+      <td>-76.77</td>
+      <td>88.71</td>
+      <td>0.41</td>
+      <td>58.23</td>
+      <td>-0.97</td>
+      <td>79</td>
+      <td>6.74</td>
+      <td>8.68</td>
+      <td>reject</td>
+    </tr>
+  </tbody>
+</table></div>
     </section>
     
       </div>
