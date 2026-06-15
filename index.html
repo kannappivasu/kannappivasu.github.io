@@ -621,15 +621,15 @@
       <div class="panel-head compact">
         <div>
           <p class="eyebrow">HFT research</p>
-          <h2>BTC 3m variants</h2>
-          <p class="muted">Three short-horizon families tested on the same 12-month BTC futures sample with the same execution model.</p>
+          <h2>BTC 1m-3m candidate lab</h2>
+          <p class="muted">Candidate families are selected from public and academic evidence, then tested on the same 12-month BTC futures sample with the same execution model.</p>
         </div>
       </div>
       <div class="summary-grid">
         <div class="summary-box">
           <span>Recommendation</span>
-          <strong>BTC 3m EMA trend</strong>
-          <p>Best variant by net profit: BTC 3m EMA trend. This is the short-horizon 3m research branch, separate from the 15m lead.</p>
+          <strong>BTC 3m session momentum</strong>
+          <p>Best variant by net profit: BTC 3m session momentum. This is the short-horizon BTC futures research branch, separate from the 15m lead.</p>
         </div>
         <div class="summary-box">
           <span>Data window</span>
@@ -639,7 +639,7 @@
         <div class="summary-box">
           <span>Variants tested</span>
           <strong>3</strong>
-          <p>3m bullish mean reversion, 3m symmetric mean reversion, and 3m EMA trend.</p>
+          <p>The current report tests the strongest three families that were practical to validate with the existing data.</p>
         </div>
         <div class="summary-box">
           <span>Best tie-break</span>
@@ -653,53 +653,114 @@
         </div>
       </div>
       <div style="height:14px"></div>
+      <div class="subpanel">
+        <div class="panel-head compact" style="margin-bottom: 10px;">
+          <div>
+            <p class="eyebrow">Research map</p>
+            <h3>Candidate families considered</h3>
+          </div>
+        </div>
+        <ul class="clean-list">
+        <li>
+          <strong>Mean reversion after extremes</strong>
+          <p>BTC shows documented intraday reversal around overreaction and jump conditions.</p>
+          <p class="muted">Exploit: Short-term overshoot and snapback after non-fundamental price shocks.</p>
+          <p class="muted">Fragile because: Gets run over in genuine trend days and when slippage consumes the bounce.</p>
+          <p class="muted">Execution: Needs low spread, fast fills, and realistic stop handling.</p>
+        </li>
+        
+        <li>
+          <strong>Trend-following / intraday momentum</strong>
+          <p>Academic evidence shows intraday Bitcoin momentum can be stronger in high-volume and high-volatility sessions.</p>
+          <p class="muted">Exploit: Information diffusion and continuation after active-session directional pressure.</p>
+          <p class="muted">Fragile because: Continuation edges vanish quickly once fills degrade or sessions turn choppy.</p>
+          <p class="muted">Execution: Sensitive to entry latency and to chasing already-extended candles.</p>
+        </li>
+        
+        <li>
+          <strong>Volatility breakout / squeeze expansion</strong>
+          <p>BTC shows intraday predictability at short horizons and strong volatility clustering.</p>
+          <p class="muted">Exploit: Compression-to-expansion transitions and range escape.</p>
+          <p class="muted">Fragile because: Breakouts are easy to fake out once spread, delay, and taker costs are realistic.</p>
+          <p class="muted">Execution: Requires aggressive but efficient entry, often the worst-case scenario for slippage.</p>
+        </li>
+        
+        <li>
+          <strong>Time-of-day / session-filtered intraday behavior</strong>
+          <p>Bitcoin exhibits intraday and intraweek seasonality in volatility and activity.</p>
+          <p class="muted">Exploit: Certain UTC windows are structurally more active and may support better continuation or reversal signals.</p>
+          <p class="muted">Fragile because: Session effects drift over time and can disappear after costs.</p>
+          <p class="muted">Execution: Still cost-sensitive; a seasonal edge is useless if it is only a few basis points wide.</p>
+        </li>
+        
+        <li>
+          <strong>Market-maker / passivbot-style contrarian logic</strong>
+          <p>Passivbot is one of the most documented perpetual-futures market-making families in public crypto tooling.</p>
+          <p class="muted">Exploit: Noise harvesting around fair value with layered passive reversion entries.</p>
+          <p class="muted">Fragile because: Adverse selection, trend persistence, and inventory risk can dominate in directional BTC tapes.</p>
+          <p class="muted">Execution: Requires honest passive fill modeling and tight control of partial fills and re-entries.</p>
+        </li>
+        
+        <li>
+          <strong>Funding-aware / basis-aware perp behavior</strong>
+          <p>Perpetual futures are anchored by funding, so basis dislocations are structurally meaningful.</p>
+          <p class="muted">Exploit: Temporary perp-spot deviations and funding mean reversion.</p>
+          <p class="muted">Fragile because: This is more of a hedge / carry family than a pure 1m-3m directional HFT edge.</p>
+          <p class="muted">Execution: Needs spot or hedge leg access and mark-price-aware accounting; not ideal for standalone BTCC intraday execution.</p>
+        </li>
+        </ul>
+      </div>
+      <div style="height:14px"></div>
       <div class="grid-2">
         
             <section class="subpanel hft-card">
               <div class="panel-head compact">
                 <div>
                   <p class="eyebrow">3m HFT variant</p>
-                  <h3>BTC 3m bullish mean reversion</h3>
-                  <p class="muted">Contrarian 3m long-only setup inspired by documented market-making/passivbot-style reversion logic.</p>
+                  <h3>BTC 3m session momentum</h3>
+                  <p class="muted">High-volume and high-volatility session continuation, following the intraday Bitcoin momentum literature.</p>
                 </div>
-                <div class="badge">3m passivbot-style long mean reversion</div>
+                <div class="badge">Intraday momentum continuation</div>
               </div>
               <div class="mini-grid hft-mini">
                 
     <div class="stat-card">
       <div class="stat-label">Net profit</div>
-      <div class="stat-value">$-9.03</div>
+      <div class="stat-value">$-0.67</div>
       
     </div>
     
                 
     <div class="stat-card">
       <div class="stat-label">Max drawdown</div>
-      <div class="stat-value">$9.39</div>
+      <div class="stat-value">$3.77</div>
       
     </div>
     
                 
     <div class="stat-card">
       <div class="stat-label">Win rate</div>
-      <div class="stat-value">16.67%</div>
+      <div class="stat-value">25.00%</div>
       
     </div>
     
                 
     <div class="stat-card">
       <div class="stat-label">Trades</div>
-      <div class="stat-value">6</div>
+      <div class="stat-value">4</div>
       
     </div>
     
               </div>
               <div class="parameter-list">
-                <div class="param-row"><span>Profit factor</span><strong>0.02</strong></div>
-                <div class="param-row"><span>Expectancy</span><strong>$-1.51</strong></div>
-                <div class="param-row"><span>Avg duration</span><strong>0.64 h</strong></div>
-                <div class="param-row"><span>Params</span><strong>long_rsi=28, adx_max=20, band_cap=1.0, exit_long_rsi=48</strong></div>
-                <div class="param-row"><span>Sources</span><strong><a href="https://github.com/enarjord/passivbot" target="_blank" rel="noreferrer">source</a> <a href="https://github.com/enarjord/passivbot/wiki/walkthrough" target="_blank" rel="noreferrer">source</a></strong></div>
+                <div class="param-row"><span>Verdict</span><strong>reject</strong></div>
+                <div class="param-row"><span>Profit factor</span><strong>0.69</strong></div>
+                <div class="param-row"><span>Expectancy</span><strong>$-0.17</strong></div>
+                <div class="param-row"><span>Avg duration</span><strong>0.75 h</strong></div>
+                <div class="param-row"><span>Train / test net</span><strong>$-0.67 / $-3.62</strong></div>
+                <div class="param-row"><span>Positive walk-forward tests</span><strong>0 / 3</strong></div>
+                <div class="param-row"><span>Params</span><strong>session=both, atr_rank_min=0.65, adx_min=16, rsi_low=56</strong></div>
+                <div class="param-row"><span>Sources</span><strong><a href="https://centaur.reading.ac.uk/100181/3/21Sep2021Bitcoin%20Intraday%20Time-Series%20Momentum.R2.pdf" target="_blank" rel="noreferrer">source</a> <a href="https://kar.kent.ac.uk/93919/" target="_blank" rel="noreferrer">source</a></strong></div>
               </div>
             </section>
             
@@ -708,47 +769,50 @@
               <div class="panel-head compact">
                 <div>
                   <p class="eyebrow">3m HFT variant</p>
-                  <h3>BTC 3m symmetric mean reversion</h3>
-                  <p class="muted">Standard 3m Bollinger+RSI mean reversion with both sides enabled and a documented crypto intraday reversal backdrop.</p>
+                  <h3>BTC 3m jump reversal</h3>
+                  <p class="muted">Fade large intraday jumps only when the candle already looks overextended.</p>
                 </div>
-                <div class="badge">3m Bollinger / RSI reversion</div>
+                <div class="badge">Mean reversion after extremes</div>
               </div>
               <div class="mini-grid hft-mini">
                 
     <div class="stat-card">
       <div class="stat-label">Net profit</div>
-      <div class="stat-value">$-7.24</div>
+      <div class="stat-value">$-2.90</div>
       
     </div>
     
                 
     <div class="stat-card">
       <div class="stat-label">Max drawdown</div>
-      <div class="stat-value">$7.24</div>
+      <div class="stat-value">$3.86</div>
       
     </div>
     
                 
     <div class="stat-card">
       <div class="stat-label">Win rate</div>
-      <div class="stat-value">0.00%</div>
+      <div class="stat-value">42.86%</div>
       
     </div>
     
                 
     <div class="stat-card">
       <div class="stat-label">Trades</div>
-      <div class="stat-value">3</div>
+      <div class="stat-value">7</div>
       
     </div>
     
               </div>
               <div class="parameter-list">
-                <div class="param-row"><span>Profit factor</span><strong>0.00</strong></div>
-                <div class="param-row"><span>Expectancy</span><strong>$-2.41</strong></div>
-                <div class="param-row"><span>Avg duration</span><strong>0.40 h</strong></div>
-                <div class="param-row"><span>Params</span><strong>long_rsi=32, short_rsi=68, adx_max=28, band_cap=1.002</strong></div>
-                <div class="param-row"><span>Sources</span><strong><a href="https://papers.ssrn.com/sol3/Delivery.cfm/SSRN_ID4135239_code2537556.pdf?abstractid=4080253&amp;mirid=1" target="_blank" rel="noreferrer">source</a> <a href="https://github.com/jerome78b/bitget-trading-bot" target="_blank" rel="noreferrer">source</a></strong></div>
+                <div class="param-row"><span>Verdict</span><strong>weak</strong></div>
+                <div class="param-row"><span>Profit factor</span><strong>0.33</strong></div>
+                <div class="param-row"><span>Expectancy</span><strong>$-0.41</strong></div>
+                <div class="param-row"><span>Avg duration</span><strong>0.46 h</strong></div>
+                <div class="param-row"><span>Train / test net</span><strong>$-2.90 / $-14.21</strong></div>
+                <div class="param-row"><span>Positive walk-forward tests</span><strong>1 / 3</strong></div>
+                <div class="param-row"><span>Params</span><strong>range_mult=1.5, vol_mult=1.0, adx_max=20, long_rsi=34</strong></div>
+                <div class="param-row"><span>Sources</span><strong><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4080253" target="_blank" rel="noreferrer">source</a></strong></div>
               </div>
             </section>
             
@@ -759,47 +823,50 @@
               <div class="panel-head compact">
                 <div>
                   <p class="eyebrow">3m HFT variant</p>
-                  <h3>BTC 3m EMA trend</h3>
-                  <p class="muted">Walk-forward friendly intraday EMA trend family based on the recent BTC EMA optimization paper.</p>
+                  <h3>BTC 3m passivbot proxy</h3>
+                  <p class="muted">A simplified passive mean-reversion proxy inspired by documented passivbot logic for perpetual futures.</p>
                 </div>
-                <div class="badge">3m EMA crossover trend</div>
+                <div class="badge">Contrarian market-maker proxy</div>
               </div>
               <div class="mini-grid hft-mini">
                 
     <div class="stat-card">
       <div class="stat-label">Net profit</div>
-      <div class="stat-value">$-3.25</div>
+      <div class="stat-value">$-4.40</div>
       
     </div>
     
                 
     <div class="stat-card">
       <div class="stat-label">Max drawdown</div>
-      <div class="stat-value">$3.73</div>
+      <div class="stat-value">$6.17</div>
       
     </div>
     
                 
     <div class="stat-card">
       <div class="stat-label">Win rate</div>
-      <div class="stat-value">0.00%</div>
+      <div class="stat-value">25.00%</div>
       
     </div>
     
                 
     <div class="stat-card">
       <div class="stat-label">Trades</div>
-      <div class="stat-value">3</div>
+      <div class="stat-value">4</div>
       
     </div>
     
               </div>
               <div class="parameter-list">
-                <div class="param-row"><span>Profit factor</span><strong>0.00</strong></div>
-                <div class="param-row"><span>Expectancy</span><strong>$-1.08</strong></div>
-                <div class="param-row"><span>Avg duration</span><strong>0.18 h</strong></div>
-                <div class="param-row"><span>Params</span><strong>rsi_low=48, rsi_high=68, rsi_short_low=32, rsi_short_high=52</strong></div>
-                <div class="param-row"><span>Sources</span><strong><a href="https://arxiv.org/html/2602.10785" target="_blank" rel="noreferrer">source</a> <a href="https://www.passivbot.com/" target="_blank" rel="noreferrer">source</a></strong></div>
+                <div class="param-row"><span>Verdict</span><strong>weak</strong></div>
+                <div class="param-row"><span>Profit factor</span><strong>0.18</strong></div>
+                <div class="param-row"><span>Expectancy</span><strong>$-1.10</strong></div>
+                <div class="param-row"><span>Avg duration</span><strong>0.85 h</strong></div>
+                <div class="param-row"><span>Train / test net</span><strong>$-4.40 / $-4.37</strong></div>
+                <div class="param-row"><span>Positive walk-forward tests</span><strong>1 / 3</strong></div>
+                <div class="param-row"><span>Params</span><strong>long_rsi=26, short_rsi=74, adx_max=18, band_cap=1.0</strong></div>
+                <div class="param-row"><span>Sources</span><strong><a href="https://github.com/enarjord/passivbot" target="_blank" rel="noreferrer">source</a> <a href="https://www.passivbot.com/" target="_blank" rel="noreferrer">source</a></strong></div>
               </div>
             </section>
             
@@ -820,36 +887,44 @@
       <th>Drawdown</th>
       <th>Win rate</th>
       <th>Profit factor</th>
+      <th>Expectancy</th>
       <th>Trades</th>
+      <th>Verdict</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>BTC 3m bullish mean reversion</td>
+      <td>BTC 3m session momentum</td>
       <td>3m</td>
-      <td>$-9.03</td>
-      <td>$9.39</td>
-      <td>16.67%</td>
-      <td>0.02</td>
-      <td>6</td>
+      <td>$-0.67</td>
+      <td>$3.77</td>
+      <td>25.00%</td>
+      <td>0.69</td>
+      <td>$-0.17</td>
+      <td>4</td>
+      <td>reject</td>
     </tr>
     <tr>
-      <td>BTC 3m symmetric mean reversion</td>
+      <td>BTC 3m jump reversal</td>
       <td>3m</td>
-      <td>$-7.24</td>
-      <td>$7.24</td>
-      <td>0.00%</td>
-      <td>0.00</td>
-      <td>3</td>
+      <td>$-2.90</td>
+      <td>$3.86</td>
+      <td>42.86%</td>
+      <td>0.33</td>
+      <td>$-0.41</td>
+      <td>7</td>
+      <td>weak</td>
     </tr>
     <tr>
-      <td>BTC 3m EMA trend</td>
+      <td>BTC 3m passivbot proxy</td>
       <td>3m</td>
-      <td>$-3.25</td>
-      <td>$3.73</td>
-      <td>0.00%</td>
-      <td>0.00</td>
-      <td>3</td>
+      <td>$-4.40</td>
+      <td>$6.17</td>
+      <td>25.00%</td>
+      <td>0.18</td>
+      <td>$-1.10</td>
+      <td>4</td>
+      <td>weak</td>
     </tr>
   </tbody>
 </table></div>
