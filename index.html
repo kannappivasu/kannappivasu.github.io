@@ -2320,61 +2320,93 @@
     <section class="panel">
       <div class="panel-head compact">
         <div>
-          <p class="eyebrow">Paper trade plan</p>
-          <h2>Exact rules, logging, and go-live gate</h2>
-          <p class="muted">This is the operating checklist for the current BTC 15m candidate.</p>
+          <p class="eyebrow">Paper trading</p>
+          <h2>v1 operations board</h2>
+          <p class="muted">The 15m mean-reversion strategy is frozen as v1. This panel tracks whether paper fills prove the model before any live deployment.</p>
         </div>
+        <div class="badge">paper_trade_candidate</div>
       </div>
       <div class="summary-grid">
         <div class="summary-box">
-          <span>Entry logic</span>
-          <strong>15m mean reversion</strong>
-          <p>1h RSI trend filter, ADX cap, maker-first limit entry, 2-bar timeout.</p>
+          <span>Active strategy</span>
+          <strong>v1</strong>
+          <p>btc_15m_mean_reversion_v1</p>
         </div>
         <div class="summary-box">
-          <span>Execution guard</span>
-          <strong>Spread + volatility caps</strong>
-          <p>Skip if spread is above 0.30% or volatility is above 1.05%.</p>
+          <span>Paper status</span>
+          <strong>Not live-ready</strong>
+          <p>Current gate: No-go.</p>
         </div>
         <div class="summary-box">
-          <span>Risk guard</span>
-          <strong>Loss caps on</strong>
-          <p>Stop the day at 3% loss, the week at 7% loss, and after 3 straight losses.</p>
+          <span>Expected vs actual fills</span>
+          <strong>0 missed / 0 partial</strong>
+          <p>Model uses maker-first limit orders with 2 candle timeout.</p>
         </div>
         <div class="summary-box">
-          <span>Go-live gate</span>
-          <strong>30 paper trades</strong>
-          <p>Need positive net paper PnL and slippage near or below the tested 0.05% breakpoint.</p>
+          <span>Live/paper PnL</span>
+          <strong>$0.00</strong>
+          <p>Backtest reference: $20.62 net on $200 model.</p>
+        </div>
+        <div class="summary-box">
+          <span>Slippage drift</span>
+          <strong>pending</strong>
+          <p>Actual avg: pending; stress gate: 0.05%.</p>
+        </div>
+        <div class="summary-box">
+          <span>Signals per month</span>
+          <strong>0.00</strong>
+          <p>0 actionable paper signals logged.</p>
+        </div>
+        <div class="summary-box">
+          <span>Current drawdown</span>
+          <strong>$0.00</strong>
+          <p>Modeled max drawdown: $12.33.</p>
+        </div>
+        <div class="summary-box">
+          <span>Closed paper trades</span>
+          <strong>0 / 30</strong>
+          <p>Or 60 calendar days if trades stay rare.</p>
         </div>
       </div>
       <div style="height:14px"></div>
       <div class="grid-2">
         <div class="subpanel">
-          <h3>Daily log fields</h3>
-          <ul class="progress-list">
-            <li><span>1</span><strong>Trade metadata</strong><p>Date, side, signal time, entry time, exit time.</p></li>
-            <li><span>2</span><strong>Execution data</strong><p>Entry price, exit price, spread, slippage, fees, funding.</p></li>
-            <li><span>3</span><strong>PnL detail</strong><p>Gross PnL, net PnL, R multiple, MAE, MFE.</p></li>
-            <li><span>4</span><strong>Context</strong><p>Reason for entry, reason for exit, notes on missed fills or odd behavior.</p></li>
-          </ul>
+          <h3>Go/no-go rules</h3>
+          <div class="parameter-list">
+        <div class="param-row">
+          <span>minimum 30 trades or 60 days</span>
+          <strong>fail</strong>
+        </div>
+        
+        <div class="param-row">
+          <span>positive net after costs</span>
+          <strong>fail</strong>
+        </div>
+        
+        <div class="param-row">
+          <span>drawdown within modeled range</span>
+          <strong>pass</strong>
+        </div>
+        
+        <div class="param-row">
+          <span>actual slippage within stress threshold</span>
+          <strong>pending</strong>
+        </div>
+        
+        <div class="param-row">
+          <span>no unexplained execution failures</span>
+          <strong>pass</strong>
+        </div>
+        </div>
         </div>
         <div class="subpanel">
-          <h3>Weekly review</h3>
-          <ul class="progress-list">
-            <li><span>1</span><strong>Performance</strong><p>Total trades, win rate, average win/loss, worst trade.</p></li>
-            <li><span>2</span><strong>Risk</strong><p>Max drawdown, consecutive losses, recovery time.</p></li>
-            <li><span>3</span><strong>Execution</strong><p>Missed entries, average slippage, fill quality versus the backtest.</p></li>
-            <li><span>4</span><strong>Regime check</strong><p>Any losses clustering in the same market regime.</p></li>
-          </ul>
-        </div>
-      </div>
-      <div style="height:14px"></div>
-      <div class="subpanel">
-        <h3>Pause or continue</h3>
-        <div class="parameter-list">
-          <div class="param-row"><span>Pause</span><strong>if slippage drifts above the tested threshold, fill quality gets bad, or the live curve breaks the backtest shape.</strong></div>
-          <div class="param-row"><span>Continue</span><strong>if live paper results stay close to the backtest and losses remain bounded.</strong></div>
-          <div class="param-row"><span>Do not go live</span><strong>until the paper log has at least 30 trades and the net result remains positive after fees and slippage.</strong></div>
+          <h3>Operating files</h3>
+          <div class="parameter-list">
+            <div class="param-row"><span>Frozen spec</span><strong>data/strategy_v1.json</strong></div>
+            <div class="param-row"><span>Signal logger</span><strong>research/paper_signal_logger.py</strong></div>
+            <div class="param-row"><span>Paper log</span><strong>data/paper_trade_log.csv</strong></div>
+            <div class="param-row"><span>Signal events</span><strong>data/paper_signal_events_v1.csv</strong></div>
+          </div>
         </div>
       </div>
     </section>

@@ -1,88 +1,139 @@
-# BTC 15m Paper Trade Runbook
+# BTC 15m Mean Reversion v1 Paper Trade Runbook
 
-## Strategy
+## Status
 
-- Market: BTC futures
+- Active strategy version: `btc_15m_mean_reversion_v1`
+- Current status: paper-trade candidate
+- Live status: not live-ready
+- Benchmark role: current keeper
+- Execution adapter: not built yet
+
+The strategy is frozen as `v1` in `data/strategy_v1.json`. Failed research branches stay archived as evidence, but they are not part of the paper-trade plan.
+
+## Frozen v1 Rules
+
+- Market: BTC perpetual futures proxy
 - Timeframe: 15m
-- Bias filter: 1h RSI trend filter
-- Entry style: 15m mean reversion
-- Entry type: maker-first limit orders
-- Timeout: cancel after 2 candles if not filled
-- No market-chasing fallback for the base paper setup
+- Context: 1h trend/RSI filter
+- Entry style: 15m Bollinger/RSI mean reversion
+- Execution: maker-first limit order
+- Limit timeout: cancel after 2 candles if not filled
+- No market-chasing fallback in the base paper setup
 
-## Exact rule set
+Long entry:
 
-- Long only when `1h RSI > 55`, `15m RSI < 28`, `close < lower Bollinger band`, and `ADX < 28`.
-- Short only when `1h RSI < 62`, `15m RSI > 72`, `close > upper Bollinger band`, and `ADX < 28`.
-- Skip entries when spread is above `0.30%`.
-- Skip entries when volatility is above `1.05%`.
-- Skip entries after an impulse candle for 2 bars.
-- Reject the trade if expected edge cannot cover fees plus slippage buffer.
-- Position size is scaled down in high-volatility regimes.
-- Stop trading for the day after a `3%` realized daily loss.
-- Stop trading for the week after a `7%` realized weekly loss.
-- Stop after 3 consecutive losses.
+- `trend_bias_1h >= 0`
+- `1h RSI > 55`
+- `15m RSI < 28`
+- `15m close < lower Bollinger Band(20, 2)`
+- `15m ADX < 28`
+- volume is positive
 
-## Daily log
+Short entry:
 
-Record these fields every day:
+- `trend_bias_1h <= 0`
+- `1h RSI < 62`
+- `15m RSI > 72`
+- `15m close > upper Bollinger Band(20, 2)`
+- `15m ADX < 28`
+- volume is positive
 
-- Date
-- Side
-- Signal time
-- Entry time
-- Exit time
-- Entry price
-- Exit price
-- Spread at entry
-- Slippage at entry
-- Fees paid
-- Funding paid
-- Gross PnL
-- Net PnL
-- MAE
-- MFE
-- Reason for entry
-- Reason for exit
-- Notes on missed fills or abnormal behavior
+Exit:
 
-## Weekly review
+- Long exits when `close >= Bollinger midline` or `15m RSI > 45`.
+- Short exits when `close <= Bollinger midline` or `15m RSI < 50`.
+- Protective model: 2.5% stop, 1.8% target, trailing activates after 1.4% with 0.7% offset.
 
-- Total trades
+## Execution Checklist
+
+Before placing a paper order:
+
+- Confirm the signal is from `v1`, not an experimental branch.
+- Record the signal row in `data/paper_signal_events_v1.csv`.
+- Check spread estimate is at or below `0.30%`.
+- Check volatility estimate is at or below `1.05%`.
+- Check there is no impulse-candle skip.
+- Place maker-first paper limit order at the model limit price.
+- Cancel if not filled within 2 candles.
+- Record whether the fill was full, partial, missed, or manually rejected.
+
+After a fill:
+
+- Record actual entry price, actual spread, actual slippage, filled fraction, fees, and order timing.
+- Track exit condition every 15m candle.
+- Record actual exit price, fees, funding, gross PnL, net PnL, MAE, MFE, and notes.
+- Mark any execution issue explicitly; do not hide it inside notes.
+
+## Log Files
+
+- Strategy spec: `data/strategy_v1.json`
+- Paper status: `data/paper_trade_status.json`
+- Live/paper trade log: `data/paper_trade_log.csv`
+- Signal event log: `data/paper_signal_events_v1.csv`
+- Blank template: `data/paper_trade_log_template.csv`
+- Logger script: `research/paper_signal_logger.py`
+- Status builder: `research/paper_status_report.py`
+
+Logger command:
+
+```powershell
+python .\research\paper_signal_logger.py --latest-only
+python .\research\paper_status_report.py
+python .\dashboard\build_dashboard.py
+```
+
+Use full-history mode only for debugging the logger, not for paper performance:
+
+```powershell
+python .\research\paper_signal_logger.py
+```
+
+## Daily Review
+
+- New entry signals
+- Skipped signals and skip reasons
+- Missed or partial fills
+- Expected versus actual spread
+- Expected versus actual slippage
+- Open position status
+- Exit conditions
+- Net paper PnL after fees, funding, and slippage
+- Any order, API, timing, or venue issue
+
+## Weekly Review
+
+- Closed paper trades
+- Signals per month pace
 - Win rate
-- Average win / average loss
-- Max drawdown
-- Worst trade
-- Consecutive losses
-- Missed entries
-- Average slippage versus the backtest assumption
-- Any regime where losses cluster
+- Average win and average loss
+- Net paper PnL
+- Max paper drawdown
+- Current drawdown
+- Missed-fill count
+- Average actual slippage versus modeled slippage
+- Slippage drift versus the `0.05%` stress threshold
+- Execution failures
 
-## Pause rules
+## Pause Rules
 
-Pause paper trading if any of these happen:
+Pause paper trading if:
 
-- Slippage is materially worse than the backtest assumption for several trades in a row.
-- The strategy hits the daily or weekly loss cap.
-- Fill quality is poor enough that maker entries are no longer realistic.
-- The live curve is negative while the same period looked positive in the backtest.
+- Average actual slippage is worse than `0.05%`.
+- Fill quality is materially worse than the maker-first model.
+- The strategy hits the modeled daily or weekly loss guard.
+- There are unexplained execution failures.
+- Paper drawdown exceeds the modeled range plus a 25% tolerance.
+- Signals do not match the frozen `v1` rules.
 
-## Continue rules
+## Go/No-Go Gate
 
-Continue paper trading if:
+Do not go live unless all are true:
 
-- Live paper results stay directionally close to the backtest.
-- Slippage remains near or below the tested threshold.
-- Losses stay bounded and recover normally.
-- The strategy keeps trading enough to be judged fairly.
+- At least 30 closed paper trades, or at least 60 calendar days if trade frequency stays rare.
+- Net paper PnL is positive after fees, funding, and actual slippage.
+- Max paper drawdown is within the modeled range plus tolerance.
+- Average actual slippage is no worse than the `0.05%` stress-tested threshold.
+- No unexplained execution failures remain open.
+- The execution log is complete enough to audit.
 
-## Go-live gate
-
-Do not go live yet unless all of these are true:
-
-- At least 30 paper trades have been logged.
-- Net paper PnL is positive after fees and estimated slippage.
-- Average live slippage is close to or better than `0.05%`.
-- The drawdown profile is still tolerable.
-- No hidden venue issue shows up in fills, funding, or order handling.
-
+Until every gate passes, the correct status remains: paper-trade candidate.
