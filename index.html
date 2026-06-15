@@ -636,7 +636,7 @@
         <div class="summary-box">
           <span>Recommendation</span>
           <strong>BTC 15m mean reversion</strong>
-          <p>Best deployable candidate: BTC 15m mean reversion. The report tests whether simpler higher-frequency ideas can beat the current 15m lead.</p>
+          <p>{&#x27;net_profit&#x27;: -4.672689762677862, &#x27;max_drawdown&#x27;: 5.1994891744652705, &#x27;win_rate&#x27;: 0.25, &#x27;profit_factor&#x27;: 0.22222975338412096, &#x27;trades&#x27;: 8, &#x27;avg_win&#x27;: 0.6675561954951263, &#x27;avg_loss&#x27;: -1.0013003589446834, &#x27;expectancy_per_trade&#x27;: -0.5840862203347309, &#x27;median_trade_return&#x27;: -0.45149010764931174, &#x27;avg_trade_duration_hours&#x27;: 0.28750000000000003, &#x27;median_trade_duration_hours&#x27;: 0.1, &#x27;max_consecutive_losses&#x27;: 3, &#x27;worst_trade&#x27;: -1.5338606069156488, &#x27;drawdown_recovery_bars&#x27;: 174201, &#x27;drawdown_recovery_hours&#x27;: 8710.050000000001, &#x27;capacity_estimate&#x27;: 476556.183675, &#x27;fees_paid&#x27;: 2.484614097340673, &#x27;funding_paid&#x27;: 0.0, &#x27;starting_equity&#x27;: 200, &#x27;ending_equity&#x27;: 195.33, &#x27;positive_months&#x27;: 0, &#x27;months_total&#x27;: 12, &#x27;win_rate_pct&#x27;: 25.0, &#x27;net_profit_after_costs&#x27;: -4.67, &#x27;trades_per_month&#x27;: 0.67}</p>
         </div>
         <div class="summary-box">
           <span>Data window</span>
@@ -1015,6 +1015,151 @@
     </tr>
   </tbody>
 </table>
+          </div>
+        </div>
+        
+      
+        <div style="height:14px"></div>
+        <div class="subpanel">
+          <div class="panel-head compact" style="margin-bottom: 10px;">
+            <div>
+              <p class="eyebrow">EMA reclaim branch</p>
+              <h3>15m EMA50 bias + lower-TF reclaim tests</h3>
+              <p class="muted">This branch tests the requested EMA5/EMA10 close reclaim and WMA5/WMA10 high-low pullback logic on full-year 3m/6m BTC futures candles.</p>
+            </div>
+            <div class="badge">15m baseline remains better</div>
+          </div>
+          <div class="summary-grid">
+            <div class="summary-box">
+              <span>Best decision</span>
+              <strong>BTC 15m mean reversion</strong>
+              <p>The EMA/WMA lower-TF branch must beat the 15m baseline on net, drawdown, stability, and realistic execution. It only replaces the baseline if those checks pass.</p>
+            </div>
+            <div class="summary-box">
+              <span>Data window</span>
+              <strong>2025-06-01 to 2026-06-01</strong>
+              <p>Binance USD-M BTCUSDT public futures candles</p>
+            </div>
+            <div class="summary-box">
+              <span>Verdict</span>
+              <strong>15m baseline remains better unless one EMA/WMA variant passes all robustness checks</strong>
+              <p>No EMA/WMA lower-TF variant beat the 15m baseline on realistic terms.</p>
+            </div>
+          </div>
+          <div style="height:14px"></div>
+          <div class="table-wrap"><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Variant</th>
+      <th>TF</th>
+      <th>Net</th>
+      <th>DD</th>
+      <th>PF</th>
+      <th>Win</th>
+      <th>Trades/mo</th>
+      <th>Verdict</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>BTC 15m mean reversion</td>
+      <td>15m</td>
+      <td>$20.62</td>
+      <td>$12.33</td>
+      <td>3.34</td>
+      <td>55.56%</td>
+      <td>0.75</td>
+      <td>paper trade candidate</td>
+    </tr>
+    <tr>
+      <td>BTC 3m EMA5/10 reclaim</td>
+      <td>3m</td>
+      <td>$-4.81</td>
+      <td>$6.02</td>
+      <td>0.03</td>
+      <td>28.57%</td>
+      <td>0.58</td>
+      <td>reject</td>
+    </tr>
+    <tr>
+      <td>BTC 6m WMA high/low reclaim</td>
+      <td>6m</td>
+      <td>$-5.39</td>
+      <td>$5.44</td>
+      <td>0.05</td>
+      <td>20.00%</td>
+      <td>0.42</td>
+      <td>reject</td>
+    </tr>
+    <tr>
+      <td>BTC 3m WMA pullback reclaim</td>
+      <td>3m</td>
+      <td>$-4.67</td>
+      <td>$5.20</td>
+      <td>0.22</td>
+      <td>25.00%</td>
+      <td>0.67</td>
+      <td>reject</td>
+    </tr>
+  </tbody>
+</table></div>
+          <div style="height:14px"></div>
+          <div class="grid-2">
+            
+                <div class="subpanel">
+                  <div class="panel-head compact">
+                    <div>
+                      <p class="eyebrow">3m EMA/WMA variant</p>
+                      <h3>BTC 3m EMA5/10 reclaim</h3>
+                      <p class="muted">15m EMA50 bias with lower-TF EMA5/EMA10 reclaim after pullback.</p>
+                    </div>
+                    <div class="badge">reject</div>
+                  </div>
+                  <div class="parameter-list">
+                    <div class="param-row"><span>Net / DD</span><strong>$-4.81 / $6.02</strong></div>
+                    <div class="param-row"><span>PF / win rate</span><strong>0.03 / 28.57%</strong></div>
+                    <div class="param-row"><span>Trades / month</span><strong>7 / 0.58</strong></div>
+                    <div class="param-row"><span>Train / test net</span><strong>$-4.81 / $-4.23</strong></div>
+                    <div class="param-row"><span>Positive walk-forward</span><strong>0 / 3</strong></div>
+                  </div>
+                </div>
+                
+                <div class="subpanel">
+                  <div class="panel-head compact">
+                    <div>
+                      <p class="eyebrow">6m EMA/WMA variant</p>
+                      <h3>BTC 6m WMA high/low reclaim</h3>
+                      <p class="muted">15m EMA50 bias with WMA5/WMA10 high-low reclaim and session filter.</p>
+                    </div>
+                    <div class="badge">reject</div>
+                  </div>
+                  <div class="parameter-list">
+                    <div class="param-row"><span>Net / DD</span><strong>$-5.39 / $5.44</strong></div>
+                    <div class="param-row"><span>PF / win rate</span><strong>0.05 / 20.00%</strong></div>
+                    <div class="param-row"><span>Trades / month</span><strong>5 / 0.42</strong></div>
+                    <div class="param-row"><span>Train / test net</span><strong>$-5.39 / $-6.06</strong></div>
+                    <div class="param-row"><span>Positive walk-forward</span><strong>0 / 3</strong></div>
+                  </div>
+                </div>
+                
+                <div class="subpanel">
+                  <div class="panel-head compact">
+                    <div>
+                      <p class="eyebrow">3m EMA/WMA variant</p>
+                      <h3>BTC 3m WMA pullback reclaim</h3>
+                      <p class="muted">WMA pullback/reclaim with Bollinger context and active-session filter.</p>
+                    </div>
+                    <div class="badge">reject</div>
+                  </div>
+                  <div class="parameter-list">
+                    <div class="param-row"><span>Net / DD</span><strong>$-4.67 / $5.20</strong></div>
+                    <div class="param-row"><span>PF / win rate</span><strong>0.22 / 25.00%</strong></div>
+                    <div class="param-row"><span>Trades / month</span><strong>8 / 0.67</strong></div>
+                    <div class="param-row"><span>Train / test net</span><strong>$-4.67 / $-1.14</strong></div>
+                    <div class="param-row"><span>Positive walk-forward</span><strong>0 / 3</strong></div>
+                  </div>
+                </div>
+                
           </div>
         </div>
         
