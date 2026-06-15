@@ -1,0 +1,1 @@
+trade_id,date,side,signal_time,entry_time,exit_time,entry_price,exit_price,spread_pct,slippage_pct,fees_usd,funding_usd,gross_pnl_usd,net_pnl_usd,r_multiple,mae_pct,mfe_pct,reason_entry,reason_exit,notes
