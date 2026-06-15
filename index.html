@@ -1662,6 +1662,92 @@
     </section>
     
 
+    
+    <section class="panel">
+      <div class="panel-head compact">
+        <div>
+          <p class="eyebrow">$1,000 account optimizer</p>
+          <h2>More-trade v1 challenger search</h2>
+          <p class="muted">This branch tries to increase trade count without using higher leverage as the main improvement. It is a challenger report, not a replacement for frozen v1.</p>
+        </div>
+        <div class="badge">reject</div>
+      </div>
+      <div class="summary-grid">
+        <div class="summary-box">
+          <span>Baseline scaled to $1,000</span>
+          <strong>$-225.49</strong>
+          <p>0.05 trades/mo; max DD $262.24.</p>
+        </div>
+        <div class="summary-box">
+          <span>Search depth</span>
+          <strong>2400 screened</strong>
+          <p>0 exact train survivors; 0 finalists.</p>
+        </div>
+        <div class="summary-box">
+          <span>Data window</span>
+          <strong>2023-01-09 to 2026-06-15</strong>
+          <p>Binance USD-M public BTCUSDT candles + funding</p>
+        </div>
+        <div class="summary-box">
+          <span>Decision</span>
+          <strong>reject</strong>
+          <p>No higher-trade candidate survived exact train/test validation.</p>
+        </div>
+      </div>
+      <div style="height:14px"></div>
+      <div class="subpanel table-wrap"><p class='muted'>No widened 15m variant survived exact validation. This is a rejection result, not a missing run.</p></div>
+      <div style="height:14px"></div>
+      <div class="subpanel">
+        <h3>Interpretation</h3>
+        <p class="muted">The wider-v1 search did not find a robust higher-frequency BTC futures variant. On the extended multi-year sample, the original v1 risk geometry is also too aggressive for a $1,000 account because a 2.5% BTC stop at 10x notional can create an account-sized drawdown event.</p>
+      </div>
+    </section>
+    
+
+    
+    <section class="panel">
+      <div class="panel-head compact">
+        <div>
+          <p class="eyebrow">External idea test</p>
+          <h2>Polymarket 5m bot idea, futures adaptation</h2>
+          <p class="muted">Tested the closest BTC futures analogue to the linked Polymarket 5-minute Up/Down bot: late-window continuation/reversal over 5-minute BTC buckets.</p>
+        </div>
+        <div class="badge">reject</div>
+      </div>
+      <div class="summary-grid">
+        <div class="summary-box">
+          <span>Data tested</span>
+          <strong>109,152 windows</strong>
+          <p>2025-06-01 to 2026-06-14; Binance USD-M BTCUSDT public 1m candles.</p>
+        </div>
+        <div class="summary-box">
+          <span>Families</span>
+          <strong>3</strong>
+          <p>dominant_continuation, late_exhaustion_reversal, compressed_breakout_follow</p>
+        </div>
+        <div class="summary-box">
+          <span>Cost model</span>
+          <strong>futures fees + slippage</strong>
+          <p>taker 0.04% per side, maker 0.02% per side in optimistic maker variant; dynamic base slippage plus spread proxy from recent 1m range.</p>
+        </div>
+        <div class="summary-box">
+          <span>Decision</span>
+          <strong>reject</strong>
+          <p>No positive training candidate after taker/maker fees, dynamic slippage, and risk limits.</p>
+        </div>
+      </div>
+      <div style="height:14px"></div>
+      <div class="grid-2">
+        <div class="subpanel">
+          <h3>Why it does not transfer cleanly</h3>
+          <p class="muted">The original edge depends on binary settlement and CLOB fill economics. This probe only tests the closest BTC futures analogue: late-window directional continuation/reversal over 5-minute buckets.</p>
+          <p><a href="https://www.reddit.com/r/PredictionsMarkets/comments/1t1gtti/reverse_engineering_the_polymarket_hft_bot_that/" target="_blank" rel="noreferrer">Source idea</a></p>
+        </div>
+        <div class="subpanel table-wrap"><p class='muted'>No positive train candidates after costs. The futures transfer failed before out-of-sample promotion.</p></div>
+      </div>
+    </section>
+    
+
     <section class="panel">
       <div class="panel-head compact">
         <div>
