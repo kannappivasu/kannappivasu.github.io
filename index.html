@@ -806,6 +806,218 @@
           </div>
         </div>
         
+      
+        <div style="height:14px"></div>
+        <div class="subpanel">
+          <div class="panel-head compact" style="margin-bottom: 10px;">
+            <div>
+              <p class="eyebrow">Microstructure branch</p>
+              <h3>BTC aggTrade 1m taker-flow continuation</h3>
+              <p class="muted">Follow short-horizon continuation when 3-minute taker quote-volume imbalance, 1-minute return, and activity confirm the same direction.</p>
+            </div>
+            <div class="badge">reject</div>
+          </div>
+          <div class="summary-grid">
+            <div class="summary-box">
+              <span>Data availability</span>
+              <strong>Binance USD-M futures public aggTrades</strong>
+              <p>12 sampled days. This is trade-flow data, not full order-book depth. It cannot validate queue position, top-of-book imbalance, or microprice directly.</p>
+            </div>
+            <div class="summary-box">
+              <span>Microstructure net / DD</span>
+              <strong>$-188.98 / $188.99</strong>
+              <p>PF 0.05, win rate 7.13%, 856 trades.</p>
+            </div>
+            <div class="summary-box">
+              <span>15m baseline</span>
+              <strong>$20.62 / $12.33</strong>
+              <p>PF 3.34, 0.75 trades/mo. Still better.</p>
+            </div>
+            <div class="summary-box">
+              <span>Trade frequency</span>
+              <strong>71.33 trades/sample day</strong>
+              <p>High frequency exists, but it is destructive after taker costs. Fees paid: $135.81.</p>
+            </div>
+          </div>
+          <div style="height:14px"></div>
+          <div class="grid-2">
+            <div class="subpanel">
+              <h3>Probe rules</h3>
+              <ul class="clean-list"><li><strong>long</strong>: imbalance_3m &gt; 0.35, ret_1m &gt; 0.01%, quote volume above rolling 60m median, not top-decile realized volatility</li><li><strong>short</strong>: imbalance_3m &lt; -0.35, ret_1m &lt; -0.01%, quote volume above rolling 60m median, not top-decile realized volatility</li><li><strong>entry</strong>: next-minute open after one-minute latency, taker fill</li><li><strong>exit</strong>: 0.20% stop, 0.25% target, imbalance fade, or 3-minute max hold; stop assumed first if stop and target both touched</li><li><strong>costs</strong>: 0.04% taker fee per side, 1.0 bps spread, 1.0 bps slippage per side</li></ul>
+              <p class="muted tiny">Sample file sizes checked: 2025-06-03: 12.58 MB, 2025-07-03: 11.47 MB, 2025-08-03: 7.74 MB, 2025-09-03: 11.59 MB...</p>
+            </div>
+            <div class="subpanel">
+              <h3>Pass / fail gates</h3>
+              <div class="parameter-list"><div class='param-row'><span>minimum trade count</span><strong>pass</strong></div><div class='param-row'><span>positive total net</span><strong>fail</strong></div><div class='param-row'><span>positive test net</span><strong>fail</strong></div><div class='param-row'><span>profit factor above 1 15</span><strong>fail</strong></div><div class='param-row'><span>survives 3bps slippage</span><strong>fail</strong></div><div class='param-row'><span>walk forward majority positive</span><strong>fail</strong></div></div>
+              <p class="muted">Verdict rule: Reject unless total net, test net, trade count, 3bps slippage stress, and walk-forward majority all pass.</p>
+            </div>
+          </div>
+          <div style="height:14px"></div>
+          <div class="grid-2">
+            <div class="subpanel">
+              <h3>Train / test</h3>
+              <div class="parameter-list">
+                <div class="param-row"><span>Train net</span><strong>$-152.65</strong></div>
+                <div class="param-row"><span>Train trades</span><strong>429</strong></div>
+                <div class="param-row"><span>Test net</span><strong>$-152.54</strong></div>
+                <div class="param-row"><span>Test trades</span><strong>420</strong></div>
+              </div>
+            </div>
+            <div class="subpanel table-wrap">
+              <h3>Slippage stress</h3>
+              <table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>slippage_bps_per_side</th>
+      <th>net_profit</th>
+      <th>max_drawdown</th>
+      <th>profit_factor</th>
+      <th>trades</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0.0</td>
+      <td>-181.84</td>
+      <td>181.89</td>
+      <td>0.075</td>
+      <td>856</td>
+    </tr>
+    <tr>
+      <td>1.0</td>
+      <td>-188.98</td>
+      <td>188.99</td>
+      <td>0.051</td>
+      <td>856</td>
+    </tr>
+    <tr>
+      <td>3.0</td>
+      <td>-195.92</td>
+      <td>195.92</td>
+      <td>0.028</td>
+      <td>855</td>
+    </tr>
+    <tr>
+      <td>5.0</td>
+      <td>-198.54</td>
+      <td>198.54</td>
+      <td>0.014</td>
+      <td>854</td>
+    </tr>
+    <tr>
+      <td>10.0</td>
+      <td>-199.89</td>
+      <td>199.89</td>
+      <td>0.001</td>
+      <td>857</td>
+    </tr>
+  </tbody>
+</table>
+            </div>
+          </div>
+          <div style="height:14px"></div>
+          <div class="subpanel table-wrap">
+            <h3>Rolling sample-day results</h3>
+            <table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>sample_date</th>
+      <th>net_profit</th>
+      <th>max_drawdown</th>
+      <th>trades</th>
+      <th>profit_factor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2025-06-03</td>
+      <td>-42.17</td>
+      <td>42.17</td>
+      <td>72</td>
+      <td>0.073</td>
+    </tr>
+    <tr>
+      <td>2025-07-03</td>
+      <td>-46.92</td>
+      <td>46.92</td>
+      <td>79</td>
+      <td>0.004</td>
+    </tr>
+    <tr>
+      <td>2025-08-03</td>
+      <td>-47.96</td>
+      <td>47.96</td>
+      <td>78</td>
+      <td>0.007</td>
+    </tr>
+    <tr>
+      <td>2025-09-03</td>
+      <td>-52.13</td>
+      <td>52.13</td>
+      <td>83</td>
+      <td>0.014</td>
+    </tr>
+    <tr>
+      <td>2025-10-03</td>
+      <td>-41.34</td>
+      <td>41.34</td>
+      <td>70</td>
+      <td>0.059</td>
+    </tr>
+    <tr>
+      <td>2025-11-03</td>
+      <td>-30.01</td>
+      <td>30.01</td>
+      <td>49</td>
+      <td>0.129</td>
+    </tr>
+    <tr>
+      <td>2025-12-03</td>
+      <td>-44.46</td>
+      <td>44.41</td>
+      <td>60</td>
+      <td>0.077</td>
+    </tr>
+    <tr>
+      <td>2026-01-03</td>
+      <td>-51.90</td>
+      <td>51.90</td>
+      <td>87</td>
+      <td>0.017</td>
+    </tr>
+    <tr>
+      <td>2026-02-03</td>
+      <td>-29.19</td>
+      <td>29.34</td>
+      <td>44</td>
+      <td>0.115</td>
+    </tr>
+    <tr>
+      <td>2026-03-03</td>
+      <td>-29.41</td>
+      <td>29.48</td>
+      <td>50</td>
+      <td>0.201</td>
+    </tr>
+    <tr>
+      <td>2026-04-03</td>
+      <td>-47.96</td>
+      <td>48.14</td>
+      <td>80</td>
+      <td>0.061</td>
+    </tr>
+    <tr>
+      <td>2026-05-03</td>
+      <td>-46.21</td>
+      <td>46.25</td>
+      <td>84</td>
+      <td>0.023</td>
+    </tr>
+  </tbody>
+</table>
+          </div>
+        </div>
+        
       <div style="height:14px"></div>
       <div class="grid-2">
         
