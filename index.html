@@ -1163,6 +1163,109 @@
           </div>
         </div>
         
+      
+        <div style="height:14px"></div>
+        <div class="subpanel">
+          <div class="panel-head compact" style="margin-bottom: 10px;">
+            <div>
+              <p class="eyebrow">Order-book branch</p>
+              <h3>BTC top-of-book imbalance + microprice drift</h3>
+              <p class="muted">Take liquidity only when top-of-book and top-5 imbalance, microprice edge, and short quote drift all point the same way.</p>
+            </div>
+            <div class="badge">reject</div>
+          </div>
+          <div class="summary-grid">
+            <div class="summary-box">
+              <span>Data source</span>
+              <strong>Tardis sample-day Binance futures book_snapshot_5</strong>
+              <p>12 sampled first-of-month days. This is first-day-of-month sample coverage, not continuous full-year order-book history. Good enough for a probe, not enough for a production claim.</p>
+            </div>
+            <div class="summary-box">
+              <span>Probe net / DD</span>
+              <strong>$-176.51 / $176.51</strong>
+              <p>PF 0.00, win rate 0.00%, 940 trades.</p>
+            </div>
+            <div class="summary-box">
+              <span>15m baseline</span>
+              <strong>$20.62 / $12.33</strong>
+              <p>PF 3.34, 0.75 trades/mo. Still better.</p>
+            </div>
+            <div class="summary-box">
+              <span>Trade frequency</span>
+              <strong>78.33 trades/sample day</strong>
+              <p>High frequency exists, but it is destructive after taker costs. Fees paid: $186.27.</p>
+            </div>
+          </div>
+          <div style="height:14px"></div>
+          <div class="grid-2">
+            <div class="subpanel">
+              <h3>Probe rules</h3>
+              <ul class="clean-list"><li><strong>long</strong>: spread &lt;= 0.25 bps, top5 imbalance &gt; 0.18, top1 imbalance &gt; 0.10, microprice edge &gt; 0.03 bps, 3-second mid return &gt; 0</li><li><strong>short</strong>: spread &lt;= 0.25 bps, top5 imbalance &lt; -0.18, top1 imbalance &lt; -0.10, microprice edge &lt; -0.03 bps, 3-second mid return &lt; 0</li><li><strong>entry</strong>: next-second best ask/bid with taker fee and half-spread plus extra slippage</li><li><strong>exit</strong>: 2-tick stop, 3-tick target, imbalance flip, or 10-second max hold; stop assumed first when both touched in same second</li></ul>
+            </div>
+            <div class="subpanel">
+              <h3>Pass / fail gates</h3>
+              <div class="parameter-list"><div class='param-row'><span>minimum trade count</span><strong>pass</strong></div><div class='param-row'><span>positive total net</span><strong>fail</strong></div><div class='param-row'><span>positive test net</span><strong>fail</strong></div><div class='param-row'><span>profit factor above 1 15</span><strong>fail</strong></div><div class='param-row'><span>survives 0 10bps extra slippage</span><strong>fail</strong></div><div class='param-row'><span>walk forward majority positive</span><strong>fail</strong></div></div>
+              <p class="muted">Verdict rule: Reject unless total net, test net, trade count, slippage stress, and walk-forward majority all pass on sampled top-of-book days.</p>
+            </div>
+          </div>
+          <div style="height:14px"></div>
+          <div class="grid-2">
+            <div class="subpanel">
+              <h3>Train / test</h3>
+              <div class="parameter-list">
+                <div class="param-row"><span>Train net</span><strong>$-121.70</strong></div>
+                <div class="param-row"><span>Train trades</span><strong>415</strong></div>
+                <div class="param-row"><span>Test net</span><strong>$-129.45</strong></div>
+                <div class="param-row"><span>Test trades</span><strong>457</strong></div>
+              </div>
+            </div>
+            <div class="subpanel table-wrap">
+              <h3>Slippage stress</h3>
+              <table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>extra_slippage_bps_per_side</th>
+      <th>net_profit</th>
+      <th>max_drawdown</th>
+      <th>profit_factor</th>
+      <th>trades</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0.00</td>
+      <td>-175.84</td>
+      <td>175.84</td>
+      <td>0.0</td>
+      <td>940</td>
+    </tr>
+    <tr>
+      <td>0.05</td>
+      <td>-176.51</td>
+      <td>176.51</td>
+      <td>0.0</td>
+      <td>940</td>
+    </tr>
+    <tr>
+      <td>0.10</td>
+      <td>-177.16</td>
+      <td>177.16</td>
+      <td>0.0</td>
+      <td>940</td>
+    </tr>
+    <tr>
+      <td>0.20</td>
+      <td>-178.42</td>
+      <td>178.42</td>
+      <td>0.0</td>
+      <td>940</td>
+    </tr>
+  </tbody>
+</table>
+            </div>
+          </div>
+        </div>
+        
       <div style="height:14px"></div>
       <div class="grid-2">
         
