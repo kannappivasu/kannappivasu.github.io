@@ -621,20 +621,27 @@
       <div class="panel-head compact">
         <div>
           <p class="eyebrow">HFT research</p>
-          <h2>BTC 1m-3m candidate lab</h2>
-          <p class="muted">Candidate families are selected from public and academic evidence, then tested on the same 12-month BTC futures sample with the same execution model.</p>
+          <h2>BTC deployable higher-frequency lab</h2>
+          <p class="muted">Candidate families are selected from public and academic evidence, then tested against the current 15m lead with the same realistic execution model.</p>
         </div>
       </div>
       <div class="summary-grid">
+        
+        <div class="summary-box">
+          <span>15m baseline</span>
+          <strong>$20.62 / 0.75 trades/mo</strong>
+          <p>paper trade ready. This remains the reference strategy for live feasibility.</p>
+        </div>
+        
         <div class="summary-box">
           <span>Recommendation</span>
-          <strong>BTC 3m session momentum</strong>
-          <p>Best variant by net profit: BTC 3m session momentum. This is the short-horizon BTC futures research branch, separate from the 15m lead.</p>
+          <strong>BTC 15m mean reversion</strong>
+          <p>Best deployable candidate: BTC 15m mean reversion. The report tests whether simpler higher-frequency ideas can beat the current 15m lead.</p>
         </div>
         <div class="summary-box">
           <span>Data window</span>
           <strong>2025-06-01 to 2026-06-01</strong>
-          <p>Binance USD-M futures public 3m candles</p>
+          <p>Binance USD-M BTCUSDT public futures candles</p>
         </div>
         <div class="summary-box">
           <span>Variants tested</span>
@@ -648,8 +655,8 @@
         </div>
         <div class="summary-box">
           <span>Verdict</span>
-          <strong>no viable HFT edge found</strong>
-          <p>The current 3m sample does not yet show a clear profitable HFT edge.</p>
+          <strong>15m lead remains best; higher-frequency deployable candidates are weak or rejected</strong>
+          <p>The tested higher-frequency ideas did not beat the current 15m lead after costs and validation.</p>
         </div>
       </div>
       <div style="height:14px"></div>
@@ -662,51 +669,51 @@
         </div>
         <ul class="clean-list">
         <li>
-          <strong>Mean reversion after extremes</strong>
-          <p>BTC shows documented intraday reversal around overreaction and jump conditions.</p>
-          <p class="muted">Exploit: Short-term overshoot and snapback after non-fundamental price shocks.</p>
-          <p class="muted">Fragile because: Gets run over in genuine trend days and when slippage consumes the bounce.</p>
-          <p class="muted">Execution: Needs low spread, fast fills, and realistic stop handling.</p>
+          <strong>Simple trend pullback continuation</strong>
+          <p>Trend and momentum are among the better documented BTC effects, and pullbacks avoid chasing the candle high.</p>
+          <p class="muted">Exploit: Continuation after a higher-timeframe trend resumes from a shallow intraday pullback.</p>
+          <p class="muted">Fragile because: Chop creates repeated fake pullbacks, especially when the trend filter lags.</p>
+          <p class="muted">Execution: Limit fills matter, but the edge must survive missed fills and maker/taker costs.</p>
         </li>
         
         <li>
-          <strong>Trend-following / intraday momentum</strong>
-          <p>Academic evidence shows intraday Bitcoin momentum can be stronger in high-volume and high-volatility sessions.</p>
-          <p class="muted">Exploit: Information diffusion and continuation after active-session directional pressure.</p>
-          <p class="muted">Fragile because: Continuation edges vanish quickly once fills degrade or sessions turn choppy.</p>
-          <p class="muted">Execution: Sensitive to entry latency and to chasing already-extended candles.</p>
+          <strong>Looser mean reversion</strong>
+          <p>The current 15m lead is a mean-reversion strategy, so loosening it is the simplest way to seek more trades.</p>
+          <p class="muted">Exploit: Short-term overshoot back toward a Bollinger midline inside a filtered regime.</p>
+          <p class="muted">Fragile because: Small reversions get eaten by spread and latency; looser filters admit trend-day losers.</p>
+          <p class="muted">Execution: Needs maker-style fills and hard spread/volatility gates.</p>
+        </li>
+        
+        <li>
+          <strong>Session-filtered BTC behavior</strong>
+          <p>Recent public research documents strong Bitcoin intraday and intraweek seasonal structure.</p>
+          <p class="muted">Exploit: Activity around Asia or US session windows.</p>
+          <p class="muted">Fragile because: Seasonality is thin and can vanish after spread and slippage.</p>
+          <p class="muted">Execution: Requires clock-accurate scheduling and strict skip rules around wide spread.</p>
         </li>
         
         <li>
           <strong>Volatility breakout / squeeze expansion</strong>
-          <p>BTC shows intraday predictability at short horizons and strong volatility clustering.</p>
-          <p class="muted">Exploit: Compression-to-expansion transitions and range escape.</p>
-          <p class="muted">Fragile because: Breakouts are easy to fake out once spread, delay, and taker costs are realistic.</p>
-          <p class="muted">Execution: Requires aggressive but efficient entry, often the worst-case scenario for slippage.</p>
+          <p>BTC volatility clusters and breakouts are simple to deploy.</p>
+          <p class="muted">Exploit: Range compression followed by directional expansion.</p>
+          <p class="muted">Fragile because: Breakout entries are usually taker-like and highly slippage-sensitive.</p>
+          <p class="muted">Execution: Needs conservative spread, latency, and false-breakout controls.</p>
         </li>
         
         <li>
-          <strong>Time-of-day / session-filtered intraday behavior</strong>
-          <p>Bitcoin exhibits intraday and intraweek seasonality in volatility and activity.</p>
-          <p class="muted">Exploit: Certain UTC windows are structurally more active and may support better continuation or reversal signals.</p>
-          <p class="muted">Fragile because: Session effects drift over time and can disappear after costs.</p>
-          <p class="muted">Execution: Still cost-sensitive; a seasonal edge is useless if it is only a few basis points wide.</p>
+          <strong>Funding-aware directional fade</strong>
+          <p>Funding is structural to perpetual futures and can proxy crowding.</p>
+          <p class="muted">Exploit: Crowded long or short positioning around funding windows.</p>
+          <p class="muted">Fragile because: Funding is not a timing signal by itself, and directional price movement dominates small funding edge.</p>
+          <p class="muted">Execution: Must account for real funding, maker/taker fees, and holding-period risk.</p>
         </li>
         
         <li>
-          <strong>Market-maker / passivbot-style contrarian logic</strong>
-          <p>Passivbot is one of the most documented perpetual-futures market-making families in public crypto tooling.</p>
-          <p class="muted">Exploit: Noise harvesting around fair value with layered passive reversion entries.</p>
-          <p class="muted">Fragile because: Adverse selection, trend persistence, and inventory risk can dominate in directional BTC tapes.</p>
-          <p class="muted">Execution: Requires honest passive fill modeling and tight control of partial fills and re-entries.</p>
-        </li>
-        
-        <li>
-          <strong>Funding-aware / basis-aware perp behavior</strong>
-          <p>Perpetual futures are anchored by funding, so basis dislocations are structurally meaningful.</p>
-          <p class="muted">Exploit: Temporary perp-spot deviations and funding mean reversion.</p>
-          <p class="muted">Fragile because: This is more of a hedge / carry family than a pure 1m-3m directional HFT edge.</p>
-          <p class="muted">Execution: Needs spot or hedge leg access and mark-price-aware accounting; not ideal for standalone BTCC intraday execution.</p>
+          <strong>Passivbot / market-making style contrarian logic</strong>
+          <p>Passivbot is documented and deployable, but a faithful version needs order handling beyond simple OHLCV.</p>
+          <p class="muted">Exploit: Passive noise harvesting around fair value.</p>
+          <p class="muted">Fragile because: Inventory risk and adverse selection dominate if fills are modeled too generously.</p>
+          <p class="muted">Execution: Requires order book or at least realistic queue/fill modeling.</p>
         </li>
         </ul>
       </div>
@@ -716,24 +723,76 @@
             <section class="subpanel hft-card">
               <div class="panel-head compact">
                 <div>
-                  <p class="eyebrow">3m HFT variant</p>
-                  <h3>BTC 3m session momentum</h3>
-                  <p class="muted">High-volume and high-volatility session continuation, following the intraday Bitcoin momentum literature.</p>
+                  <p class="eyebrow">6m HFT variant</p>
+                  <h3>BTC 6m trend pullback</h3>
+                  <p class="muted">A deployable higher-frequency trend pullback intended to increase trade count without chasing breakouts.</p>
                 </div>
-                <div class="badge">Intraday momentum continuation</div>
+                <div class="badge">Simple trend pullback continuation</div>
               </div>
               <div class="mini-grid hft-mini">
                 
     <div class="stat-card">
       <div class="stat-label">Net profit</div>
-      <div class="stat-value">$-0.67</div>
+      <div class="stat-value">$-1.02</div>
       
     </div>
     
                 
     <div class="stat-card">
       <div class="stat-label">Max drawdown</div>
-      <div class="stat-value">$3.77</div>
+      <div class="stat-value">$8.16</div>
+      
+    </div>
+    
+                
+    <div class="stat-card">
+      <div class="stat-label">Win rate</div>
+      <div class="stat-value">33.33%</div>
+      
+    </div>
+    
+                
+    <div class="stat-card">
+      <div class="stat-label">Trades</div>
+      <div class="stat-value">9</div>
+      
+    </div>
+    
+              </div>
+              <div class="parameter-list">
+                <div class="param-row"><span>Verdict</span><strong>weak</strong></div>
+                <div class="param-row"><span>Profit factor</span><strong>0.94</strong></div>
+                <div class="param-row"><span>Expectancy</span><strong>$-0.11</strong></div>
+                <div class="param-row"><span>Avg duration</span><strong>1.33 h</strong></div>
+                <div class="param-row"><span>Train / test net</span><strong>$-1.02 / $-7.65</strong></div>
+                <div class="param-row"><span>Positive walk-forward tests</span><strong>0 / 3</strong></div>
+                <div class="param-row"><span>Params</span><strong>notional_frac=5, entry_mode=limit, limit_entry_offset=0.00045, limit_timeout_bars=2</strong></div>
+                <div class="param-row"><span>Sources</span><strong><a href="https://quantpedia.com/how-to-design-a-simple-multi-timeframe-trend-strategy-on-bitcoin/" target="_blank" rel="noreferrer">source</a> <a href="https://centaur.reading.ac.uk/100181/3/21Sep2021Bitcoin%20Intraday%20Time-Series%20Momentum.R2.pdf" target="_blank" rel="noreferrer">source</a></strong></div>
+              </div>
+            </section>
+            
+        
+            <section class="subpanel hft-card">
+              <div class="panel-head compact">
+                <div>
+                  <p class="eyebrow">6m HFT variant</p>
+                  <h3>BTC 6m loose mean reversion</h3>
+                  <p class="muted">A more active version of the 15m mean-reversion idea.</p>
+                </div>
+                <div class="badge">Looser mean reversion</div>
+              </div>
+              <div class="mini-grid hft-mini">
+                
+    <div class="stat-card">
+      <div class="stat-label">Net profit</div>
+      <div class="stat-value">$-16.76</div>
+      
+    </div>
+    
+                
+    <div class="stat-card">
+      <div class="stat-label">Max drawdown</div>
+      <div class="stat-value">$28.30</div>
       
     </div>
     
@@ -754,64 +813,12 @@
               </div>
               <div class="parameter-list">
                 <div class="param-row"><span>Verdict</span><strong>reject</strong></div>
-                <div class="param-row"><span>Profit factor</span><strong>0.69</strong></div>
-                <div class="param-row"><span>Expectancy</span><strong>$-0.17</strong></div>
-                <div class="param-row"><span>Avg duration</span><strong>0.75 h</strong></div>
-                <div class="param-row"><span>Train / test net</span><strong>$-0.67 / $-3.62</strong></div>
+                <div class="param-row"><span>Profit factor</span><strong>0.10</strong></div>
+                <div class="param-row"><span>Expectancy</span><strong>$-4.19</strong></div>
+                <div class="param-row"><span>Avg duration</span><strong>1.30 h</strong></div>
+                <div class="param-row"><span>Train / test net</span><strong>$-16.76 / $-3.48</strong></div>
                 <div class="param-row"><span>Positive walk-forward tests</span><strong>0 / 3</strong></div>
-                <div class="param-row"><span>Params</span><strong>session=both, atr_rank_min=0.65, adx_min=16, rsi_low=56</strong></div>
-                <div class="param-row"><span>Sources</span><strong><a href="https://centaur.reading.ac.uk/100181/3/21Sep2021Bitcoin%20Intraday%20Time-Series%20Momentum.R2.pdf" target="_blank" rel="noreferrer">source</a> <a href="https://kar.kent.ac.uk/93919/" target="_blank" rel="noreferrer">source</a></strong></div>
-              </div>
-            </section>
-            
-        
-            <section class="subpanel hft-card">
-              <div class="panel-head compact">
-                <div>
-                  <p class="eyebrow">3m HFT variant</p>
-                  <h3>BTC 3m jump reversal</h3>
-                  <p class="muted">Fade large intraday jumps only when the candle already looks overextended.</p>
-                </div>
-                <div class="badge">Mean reversion after extremes</div>
-              </div>
-              <div class="mini-grid hft-mini">
-                
-    <div class="stat-card">
-      <div class="stat-label">Net profit</div>
-      <div class="stat-value">$-2.90</div>
-      
-    </div>
-    
-                
-    <div class="stat-card">
-      <div class="stat-label">Max drawdown</div>
-      <div class="stat-value">$3.86</div>
-      
-    </div>
-    
-                
-    <div class="stat-card">
-      <div class="stat-label">Win rate</div>
-      <div class="stat-value">42.86%</div>
-      
-    </div>
-    
-                
-    <div class="stat-card">
-      <div class="stat-label">Trades</div>
-      <div class="stat-value">7</div>
-      
-    </div>
-    
-              </div>
-              <div class="parameter-list">
-                <div class="param-row"><span>Verdict</span><strong>weak</strong></div>
-                <div class="param-row"><span>Profit factor</span><strong>0.33</strong></div>
-                <div class="param-row"><span>Expectancy</span><strong>$-0.41</strong></div>
-                <div class="param-row"><span>Avg duration</span><strong>0.46 h</strong></div>
-                <div class="param-row"><span>Train / test net</span><strong>$-2.90 / $-14.21</strong></div>
-                <div class="param-row"><span>Positive walk-forward tests</span><strong>1 / 3</strong></div>
-                <div class="param-row"><span>Params</span><strong>range_mult=1.5, vol_mult=1.0, adx_max=20, long_rsi=34</strong></div>
+                <div class="param-row"><span>Params</span><strong>notional_frac=7, entry_mode=limit, limit_entry_offset=0.00045, limit_timeout_bars=2</strong></div>
                 <div class="param-row"><span>Sources</span><strong><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4080253" target="_blank" rel="noreferrer">source</a></strong></div>
               </div>
             </section>
@@ -822,51 +829,51 @@
             <section class="subpanel hft-card">
               <div class="panel-head compact">
                 <div>
-                  <p class="eyebrow">3m HFT variant</p>
-                  <h3>BTC 3m passivbot proxy</h3>
-                  <p class="muted">A simplified passive mean-reversion proxy inspired by documented passivbot logic for perpetual futures.</p>
+                  <p class="eyebrow">30m HFT variant</p>
+                  <h3>BTC 30m funding fade</h3>
+                  <p class="muted">A simple perp-specific funding crowding fade around extreme funding.</p>
                 </div>
-                <div class="badge">Contrarian market-maker proxy</div>
+                <div class="badge">Funding-aware directional fade</div>
               </div>
               <div class="mini-grid hft-mini">
                 
     <div class="stat-card">
       <div class="stat-label">Net profit</div>
-      <div class="stat-value">$-4.40</div>
+      <div class="stat-value">$0.71</div>
       
     </div>
     
                 
     <div class="stat-card">
       <div class="stat-label">Max drawdown</div>
-      <div class="stat-value">$6.17</div>
+      <div class="stat-value">$5.66</div>
       
     </div>
     
                 
     <div class="stat-card">
       <div class="stat-label">Win rate</div>
-      <div class="stat-value">25.00%</div>
+      <div class="stat-value">33.33%</div>
       
     </div>
     
                 
     <div class="stat-card">
       <div class="stat-label">Trades</div>
-      <div class="stat-value">4</div>
+      <div class="stat-value">6</div>
       
     </div>
     
               </div>
               <div class="parameter-list">
                 <div class="param-row"><span>Verdict</span><strong>weak</strong></div>
-                <div class="param-row"><span>Profit factor</span><strong>0.18</strong></div>
-                <div class="param-row"><span>Expectancy</span><strong>$-1.10</strong></div>
-                <div class="param-row"><span>Avg duration</span><strong>0.85 h</strong></div>
-                <div class="param-row"><span>Train / test net</span><strong>$-4.40 / $-4.37</strong></div>
-                <div class="param-row"><span>Positive walk-forward tests</span><strong>1 / 3</strong></div>
-                <div class="param-row"><span>Params</span><strong>long_rsi=26, short_rsi=74, adx_max=18, band_cap=1.0</strong></div>
-                <div class="param-row"><span>Sources</span><strong><a href="https://github.com/enarjord/passivbot" target="_blank" rel="noreferrer">source</a> <a href="https://www.passivbot.com/" target="_blank" rel="noreferrer">source</a></strong></div>
+                <div class="param-row"><span>Profit factor</span><strong>1.19</strong></div>
+                <div class="param-row"><span>Expectancy</span><strong>$0.12</strong></div>
+                <div class="param-row"><span>Avg duration</span><strong>1.17 h</strong></div>
+                <div class="param-row"><span>Train / test net</span><strong>$0.71 / $-2.71</strong></div>
+                <div class="param-row"><span>Positive walk-forward tests</span><strong>0 / 3</strong></div>
+                <div class="param-row"><span>Params</span><strong>notional_frac=3, entry_mode=limit, limit_entry_offset=0.0005, limit_timeout_bars=2</strong></div>
+                <div class="param-row"><span>Sources</span><strong><a href="https://finance.wharton.upenn.edu/~jermann/AHJ-main-10.pdf" target="_blank" rel="noreferrer">source</a> <a href="https://arxiv.org/html/2212.06888v5" target="_blank" rel="noreferrer">source</a></strong></div>
               </div>
             </section>
             
@@ -888,42 +895,58 @@
       <th>Win rate</th>
       <th>Profit factor</th>
       <th>Expectancy</th>
+      <th>Trades/mo</th>
       <th>Trades</th>
       <th>Verdict</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>BTC 3m session momentum</td>
-      <td>3m</td>
-      <td>$-0.67</td>
-      <td>$3.77</td>
+      <td>BTC 15m mean reversion</td>
+      <td>15m</td>
+      <td>$20.62</td>
+      <td>$12.33</td>
+      <td>55.56%</td>
+      <td>3.34</td>
+      <td>$2.29</td>
+      <td>0.75</td>
+      <td>9</td>
+      <td>paper trade ready</td>
+    </tr>
+    <tr>
+      <td>BTC 6m trend pullback</td>
+      <td>6m</td>
+      <td>$-1.02</td>
+      <td>$8.16</td>
+      <td>33.33%</td>
+      <td>0.94</td>
+      <td>$-0.11</td>
+      <td>0.75</td>
+      <td>9</td>
+      <td>weak</td>
+    </tr>
+    <tr>
+      <td>BTC 6m loose mean reversion</td>
+      <td>6m</td>
+      <td>$-16.76</td>
+      <td>$28.30</td>
       <td>25.00%</td>
-      <td>0.69</td>
-      <td>$-0.17</td>
+      <td>0.10</td>
+      <td>$-4.19</td>
+      <td>0.33</td>
       <td>4</td>
       <td>reject</td>
     </tr>
     <tr>
-      <td>BTC 3m jump reversal</td>
-      <td>3m</td>
-      <td>$-2.90</td>
-      <td>$3.86</td>
-      <td>42.86%</td>
-      <td>0.33</td>
-      <td>$-0.41</td>
-      <td>7</td>
-      <td>weak</td>
-    </tr>
-    <tr>
-      <td>BTC 3m passivbot proxy</td>
-      <td>3m</td>
-      <td>$-4.40</td>
-      <td>$6.17</td>
-      <td>25.00%</td>
-      <td>0.18</td>
-      <td>$-1.10</td>
-      <td>4</td>
+      <td>BTC 30m funding fade</td>
+      <td>30m</td>
+      <td>$0.71</td>
+      <td>$5.66</td>
+      <td>33.33%</td>
+      <td>1.19</td>
+      <td>$0.12</td>
+      <td>0.50</td>
+      <td>6</td>
       <td>weak</td>
     </tr>
   </tbody>
