@@ -121,9 +121,9 @@
         </article>
         
         <article class="quick-card">
-          <span>Daily-opportunity v3</span>
-          <strong>reject</strong>
-          <p>No daily-opportunity strategy survived realistic execution.</p>
+          <span>Orderflow bootstrap</span>
+          <strong>data_limited</strong>
+          <p>Phase 1 decides whether order-flow strategy research is justified.</p>
         </article>
         </div>
         </div>
@@ -196,14 +196,14 @@
           <p>No daily-opportunity strategy survived realistic execution.</p>
         </div>
         <div class="summary-box">
+          <span>Orderflow bootstrap v4</span>
+          <strong>data_limited</strong>
+          <p>BTC has sampled trade-derived features; the basket is still too narrow for broad order-flow claims.</p>
+        </div>
+        <div class="summary-box">
           <span>Multi-asset intraday v2</span>
           <strong>reject</strong>
           <p>The higher-trade basket branch improved activity, but still failed after realistic costs.</p>
-        </div>
-        <div class="summary-box">
-          <span>Old lower-TF search</span>
-          <strong>reject</strong>
-          <p>Lower-TF candles, taker-flow, and sampled microstructure all failed to beat the baseline honestly.</p>
         </div>
       </div>
     </section>
@@ -313,6 +313,178 @@
           </div>
         </div>
       </div>
+    </section>
+    
+      </div>
+    </details>
+    
+    <details class="fold fold-warn" open>
+      <summary>
+        <div>
+          <span class="fold-kicker">Orderflow Data Bootstrap v4</span>
+          <strong>Coverage gate before orderflow strategy research</strong>
+        </div>
+        <span class="fold-icon">+</span>
+      </summary>
+      <div class="fold-body">
+        
+    <section class="panel">
+      <div class="panel-head compact">
+        <div>
+          <p class="eyebrow">Orderflow Data Bootstrap v4</p>
+          <h2>Data coverage before strategy research</h2>
+          <p class="muted">Phase 1 builds the minimum order-flow layer first. Phase 2 should only run if the data gate actually allows it.</p>
+        </div>
+        <div class="badge">data_limited</div>
+      </div>
+      <div class="summary-grid">
+        <div class="summary-box">
+          <span>Phase 1 verdict</span>
+          <strong>data_limited</strong>
+          <p>Orderflow research remains data-limited. Multi-asset daily-opportunity testing requires usable 1m trade-derived features for ETH/SOL and preferably the full basket.</p>
+        </div>
+        <div class="summary-box">
+          <span>Usable symbols</span>
+          <strong>1</strong>
+          <p>Trade-derived 1m order-flow features available for strategy use.</p>
+        </div>
+        <div class="summary-box">
+          <span>BTC trade-derived layer</span>
+          <strong>yes</strong>
+          <p>Sample-day BTC aggTrades were converted into 1m, 5m, and 15m feature files.</p>
+        </div>
+        <div class="summary-box">
+          <span>Blocking gap</span>
+          <strong>ETH/SOL 1m trades missing</strong>
+          <p>Research remains too narrow for broad daily-opportunity claims.</p>
+        </div>
+      </div>
+      <div style="height:14px"></div>
+      <div class="subpanel table-wrap"><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>symbol</th>
+      <th>raw trades</th>
+      <th>aggTrades</th>
+      <th>1m features</th>
+      <th>5m features</th>
+      <th>15m features</th>
+      <th>CVD</th>
+      <th>delta</th>
+      <th>taker buy ratio</th>
+      <th>large trade imbalance</th>
+      <th>funding</th>
+      <th>OI</th>
+      <th>liquidation</th>
+      <th>quote/order-book</th>
+      <th>usable_for_orderflow_v5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>BTCUSDT</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>ETHUSDT</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>SOLUSDT</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>BNBUSDT</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>XRPUSDT</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>DOGEUSDT</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+    </tr>
+  </tbody>
+</table></div>
     </section>
     
       </div>
